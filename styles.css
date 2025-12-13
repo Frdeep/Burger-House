@@ -1695,6 +1695,245 @@ ul, ol {
     }
 }
 
+/* ============================================
+   Reveal Animations
+   ============================================ */
+
+/* Base state for animated elements */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays */
+.reveal-delay-1 { transition-delay: 0.05s; }
+.reveal-delay-2 { transition-delay: 0.1s; }
+.reveal-delay-3 { transition-delay: 0.15s; }
+.reveal-delay-4 { transition-delay: 0.2s; }
+.reveal-delay-5 { transition-delay: 0.25s; }
+.reveal-delay-6 { transition-delay: 0.3s; }
+.reveal-delay-7 { transition-delay: 0.35s; }
+.reveal-delay-8 { transition-delay: 0.4s; }
+
+/* Slide from left */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.reveal-left.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Slide from right */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.reveal-right.revealed {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Scale up */
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-bounce);
+}
+
+.reveal-scale.revealed {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Pop effect */
+.reveal-pop {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+    transition: opacity 0.35s var(--ease-out), transform 0.4s var(--ease-bounce);
+}
+
+.reveal-pop.revealed {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* Fade only */
+.reveal-fade {
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out);
+}
+
+.reveal-fade.revealed {
+    opacity: 1;
+}
+
+/* Welcome screen animations */
+.screen[data-index="0"].active .welcome-logo {
+    animation: welcomeLogo 0.6s var(--ease-bounce) 0.2s both;
+}
+
+.screen[data-index="0"].active .welcome-title {
+    animation: welcomeTitle 0.5s var(--ease-out) 0.3s both;
+}
+
+.screen[data-index="0"].active .welcome-quote {
+    animation: revealUp 0.5s var(--ease-out) 0.4s both;
+}
+
+.screen[data-index="0"].active .welcome-tags span {
+    animation: revealPop 0.4s var(--ease-bounce) both;
+}
+
+.screen[data-index="0"].active .welcome-tags span:nth-child(1) { animation-delay: 0.5s; }
+.screen[data-index="0"].active .welcome-tags span:nth-child(2) { animation-delay: 0.55s; }
+.screen[data-index="0"].active .welcome-tags span:nth-child(3) { animation-delay: 0.6s; }
+
+.screen[data-index="0"].active .btn-discover {
+    animation: revealUp 0.5s var(--ease-out) 0.7s both;
+}
+
+@keyframes welcomeLogo {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes welcomeTitle {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        letter-spacing: 0.1em;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: -0.02em;
+    }
+}
+
+@keyframes revealUp {
+    0% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes revealPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes revealLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes revealRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes revealScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Section badge animation */
+.screen.active .section-badge {
+    animation: badgeReveal 0.4s var(--ease-out) 0.1s both;
+}
+
+@keyframes badgeReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Screen title animation */
+.screen.active .screen-title {
+    animation: titleReveal 0.5s var(--ease-out) 0.15s both;
+}
+
+@keyframes titleReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button primary animation */
+.screen.active .btn-primary {
+    animation: buttonReveal 0.4s var(--ease-out) 0.6s both;
+}
+
+@keyframes buttonReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -1716,5 +1955,15 @@ ul, ol {
     
     .screen:not(.active) {
         opacity: 0;
+    }
+    
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale,
+    .reveal-pop,
+    .reveal-fade {
+        opacity: 1;
+        transform: none;
     }
 }

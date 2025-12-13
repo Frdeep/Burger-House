@@ -54,10 +54,16 @@
         initCarousels();
         initCTAButton();
         initScrollBehavior();
+        initRevealAnimations();
         
         // Set initial state
         screens[0].classList.add('active');
         updateProgressDots();
+        
+        // Trigger initial reveals after splash
+        setTimeout(() => {
+            triggerReveals(0);
+        }, 1500);
         
         console.log('🍔 Burger House Franchise Manual v2.0 loaded!');
     }
@@ -150,11 +156,17 @@
         
         updateProgressDots();
         
+        // Trigger reveal animations on new screen
+        triggerReveals(index);
+        
         // Clean up after animation
         const animationDuration = 350;
         setTimeout(() => {
             currentEl.classList.remove('exit-left');
             state.isAnimating = false;
+            
+            // Reset reveals on previous screen for next visit
+            resetReveals(previousScreen);
             
             // Announce for screen readers
             announceScreenChange(index);
@@ -447,6 +459,72 @@
         document.body.addEventListener('touchstart', (e) => {
             state.touchStartY = e.touches[0].clientY;
         }, { passive: true });
+    }
+    
+    // ============================================
+    // Reveal Animations
+    // ============================================
+    function initRevealAnimations() {
+        // Add reveal classes to elements in each screen
+        screens.forEach((screen, screenIndex) => {
+            // Skip welcome screen (has its own CSS animations)
+            if (screenIndex === 0) return;
+            
+            const revealConfigs = [
+                { selector: '.menu-card', type: 'reveal', stagger: true },
+                { selector: '.bento-card', type: 'reveal-pop', stagger: true },
+                { selector: '.info-box', type: 'reveal', stagger: false },
+                { selector: '.highlight-box', type: 'reveal-scale', stagger: false },
+                { selector: '.zone-card', type: 'reveal', stagger: true },
+                { selector: '.stat-box', type: 'reveal-pop', stagger: true },
+                { selector: '.timeline-item', type: 'reveal', stagger: true },
+                { selector: '.excl-item', type: 'reveal', stagger: true },
+                { selector: '.warning-box', type: 'reveal-scale', stagger: false },
+                { selector: '.alert-box', type: 'reveal', stagger: false },
+                { selector: '.investment-card', type: 'reveal-scale', stagger: false },
+                { selector: '.redevance-box', type: 'reveal-pop', stagger: true },
+                { selector: '.obj-box', type: 'reveal-pop', stagger: true },
+                { selector: '.principle-card', type: 'reveal', stagger: true },
+                { selector: '.certification-badge', type: 'reveal', stagger: false },
+                { selector: '.convention-box', type: 'reveal-scale', stagger: false },
+                { selector: '.team-role', type: 'reveal', stagger: true },
+                { selector: '.cta-section', type: 'reveal-scale', stagger: false },
+                { selector: '.card-carousel', type: 'reveal', stagger: false },
+            ];
+            
+            revealConfigs.forEach(config => {
+                const elements = screen.querySelectorAll(config.selector);
+                elements.forEach((el, i) => {
+                    el.classList.add(config.type);
+                    if (config.stagger && i < 8) {
+                        el.classList.add(`reveal-delay-${i + 1}`);
+                    }
+                });
+            });
+        });
+    }
+    
+    function triggerReveals(screenIndex) {
+        const screen = screens[screenIndex];
+        if (!screen) return;
+        
+        // Small delay to let the screen transition start
+        setTimeout(() => {
+            const revealElements = screen.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-pop, .reveal-fade');
+            revealElements.forEach(el => {
+                el.classList.add('revealed');
+            });
+        }, 100);
+    }
+    
+    function resetReveals(screenIndex) {
+        const screen = screens[screenIndex];
+        if (!screen) return;
+        
+        const revealElements = screen.querySelectorAll('.revealed');
+        revealElements.forEach(el => {
+            el.classList.remove('revealed');
+        });
     }
     
     // ============================================
