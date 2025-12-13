@@ -1,31 +1,85 @@
 /* ============================================
    BURGER HOUSE - Franchise Manual App
    JavaScript - Smooth Navigation & Interactions
+   Version 2.0 - Bug fixes & UX improvements
    ============================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+(function() {
+    'use strict';
     
     // ============================================
-    // Elements
+    // State
     // ============================================
-    const splash = document.getElementById('splash');
-    const app = document.getElementById('app');
-    const screens = document.querySelectorAll('.screen');
-    const progressIndicator = document.getElementById('progressIndicator');
+    const state = {
+        currentScreen: 0,
+        isAnimating: false,
+        touchStartY: 0,
+        touchStartX: 0,
+        touchStartTime: 0,
+        carousels: new Map()
+    };
     
-    let currentScreen = 0;
-    let isAnimating = false;
-    let touchStartY = 0;
-    let touchStartX = 0;
+    // ============================================
+    // DOM Elements
+    // ============================================
+    let splash, app, screens, progressIndicator;
+    
+    // ============================================
+    // Initialize on DOM Ready
+    // ============================================
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+    function init() {
+        // Cache DOM elements
+        splash = document.getElementById('splash');
+        app = document.getElementById('app');
+        screens = document.querySelectorAll('.screen');
+        progressIndicator = document.getElementById('progressIndicator');
+        
+        if (!app || !screens.length) {
+            console.error('Required elements not found');
+            return;
+        }
+        
+        // Initialize
+        initSplashScreen();
+        initProgressDots();
+        initButtonNavigation();
+        initSwipeNavigation();
+        initKeyboardNavigation();
+        initCarousels();
+        initCTAButton();
+        initScrollBehavior();
+        
+        // Set initial state
+        screens[0].classList.add('active');
+        updateProgressDots();
+        
+        console.log('🍔 Burger House Franchise Manual v2.0 loaded!');
+    }
     
     // ============================================
     // Splash Screen
     // ============================================
-    setTimeout(() => {
-        splash.classList.add('hidden');
-        app.classList.add('visible');
-        initProgressDots();
-    }, 1800);
+    function initSplashScreen() {
+        if (!splash) return;
+        
+        const duration = 1400;
+        
+        setTimeout(() => {
+            splash.classList.add('hidden');
+            app.classList.add('visible');
+            
+            // Remove splash from DOM after animation
+            setTimeout(() => {
+                splash.remove();
+            }, 500);
+        }, duration);
+    }
     
     // ============================================
     // Progress Dots
@@ -37,6 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dotsContainer.innerHTML = '';
         screens.forEach((_, i) => {
             const dot = document.createElement('span');
+            dot.setAttribute('role', 'tab');
+            dot.setAttribute('aria-label', `Section ${i + 1}`);
             if (i === 0) dot.classList.add('active');
             dotsContainer.appendChild(dot);
         });
@@ -45,281 +101,376 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateProgressDots() {
         const dots = document.querySelectorAll('.progress-dots span');
         dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentScreen);
+            dot.classList.toggle('active', i === state.currentScreen);
         });
         
-        // Show/hide progress indicator
-        if (currentScreen > 0 && currentScreen < screens.length - 1) {
-            progressIndicator.classList.add('visible');
-        } else {
-            progressIndicator.classList.remove('visible');
+        // Show progress indicator only in middle sections
+        if (progressIndicator) {
+            const shouldShow = state.currentScreen > 0 && state.currentScreen < screens.length - 1;
+            progressIndicator.classList.toggle('visible', shouldShow);
         }
     }
     
     // ============================================
     // Screen Navigation
     // ============================================
-    function goToScreen(index) {
-        if (isAnimating || index === currentScreen || index < 0 || index >= screens.length) return;
+    function goToScreen(index, skipAnimation = false) {
+        // Validate
+        if (state.isAnimating) return false;
+        if (index === state.currentScreen) return false;
+        if (index < 0 || index >= screens.length) return false;
         
-        isAnimating = true;
+        state.isAnimating = true;
         
-        const currentEl = screens[currentScreen];
+        const currentEl = screens[state.currentScreen];
         const nextEl = screens[index];
+        const goingForward = index > state.currentScreen;
         
-        // Determine direction
-        const goingForward = index > currentScreen;
+        // Update state first
+        const previousScreen = state.currentScreen;
+        state.currentScreen = index;
         
-        // Animate out current screen
+        if (skipAnimation) {
+            currentEl.classList.remove('active', 'exit-left');
+            nextEl.classList.add('active');
+            nextEl.scrollTop = 0;
+            updateProgressDots();
+            state.isAnimating = false;
+            return true;
+        }
+        
+        // Animate transition
         currentEl.classList.remove('active');
         if (goingForward) {
             currentEl.classList.add('exit-left');
         }
         
-        // Animate in next screen
         nextEl.classList.add('active');
-        
-        // Scroll to top of new screen
         nextEl.scrollTop = 0;
         
-        // Update current
-        currentScreen = index;
         updateProgressDots();
         
         // Clean up after animation
+        const animationDuration = 350;
         setTimeout(() => {
             currentEl.classList.remove('exit-left');
-            isAnimating = false;
-        }, 400);
+            state.isAnimating = false;
+            
+            // Announce for screen readers
+            announceScreenChange(index);
+        }, animationDuration);
+        
+        return true;
+    }
+    
+    function announceScreenChange(index) {
+        // Create live region announcement
+        const title = screens[index].querySelector('.screen-title, .welcome-title');
+        if (title) {
+            const announcement = document.createElement('div');
+            announcement.setAttribute('role', 'status');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'sr-only';
+            announcement.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;';
+            announcement.textContent = title.textContent;
+            document.body.appendChild(announcement);
+            setTimeout(() => announcement.remove(), 1000);
+        }
     }
     
     // ============================================
     // Button Navigation
     // ============================================
-    document.addEventListener('click', (e) => {
+    function initButtonNavigation() {
+        document.addEventListener('click', handleButtonClick);
+    }
+    
+    function handleButtonClick(e) {
         const btn = e.target.closest('[data-goto]');
-        if (btn) {
-            const targetIndex = parseInt(btn.dataset.goto, 10);
-            goToScreen(targetIndex);
-            
-            // Button press animation
-            btn.style.transform = 'scale(0.95)';
+        if (!btn) return;
+        
+        e.preventDefault();
+        
+        const targetIndex = parseInt(btn.dataset.goto, 10);
+        if (isNaN(targetIndex)) return;
+        
+        // Visual feedback
+        btn.style.transition = 'transform 0.1s ease';
+        btn.style.transform = 'scale(0.97)';
+        
+        requestAnimationFrame(() => {
             setTimeout(() => {
                 btn.style.transform = '';
-            }, 100);
-        }
-    });
+                goToScreen(targetIndex);
+            }, 80);
+        });
+    }
     
     // ============================================
-    // Swipe Navigation (Vertical)
+    // Swipe Navigation
     // ============================================
-    app.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
-        touchStartX = e.touches[0].clientX;
-    }, { passive: true });
+    function initSwipeNavigation() {
+        if (!app) return;
+        
+        app.addEventListener('touchstart', handleTouchStart, { passive: true });
+        app.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
     
-    app.addEventListener('touchend', (e) => {
-        if (isAnimating) return;
+    function handleTouchStart(e) {
+        state.touchStartY = e.touches[0].clientY;
+        state.touchStartX = e.touches[0].clientX;
+        state.touchStartTime = Date.now();
+    }
+    
+    function handleTouchEnd(e) {
+        if (state.isAnimating) return;
         
         const touchEndY = e.changedTouches[0].clientY;
         const touchEndX = e.changedTouches[0].clientX;
-        const diffY = touchStartY - touchEndY;
-        const diffX = touchStartX - touchEndX;
+        const diffY = state.touchStartY - touchEndY;
+        const diffX = state.touchStartX - touchEndX;
+        const elapsed = Date.now() - state.touchStartTime;
         
-        // Check if it's a vertical swipe (not horizontal)
-        if (Math.abs(diffY) < 60 || Math.abs(diffX) > Math.abs(diffY)) return;
+        // Ignore if too slow (not a swipe) or if horizontal swipe
+        if (elapsed > 500) return;
+        if (Math.abs(diffY) < 50) return;
+        if (Math.abs(diffX) > Math.abs(diffY) * 0.7) return;
         
-        const activeScreen = screens[currentScreen];
-        const isAtTop = activeScreen.scrollTop <= 5;
-        const isAtBottom = activeScreen.scrollTop + activeScreen.clientHeight >= activeScreen.scrollHeight - 5;
+        const activeScreen = screens[state.currentScreen];
+        const scrollTop = activeScreen.scrollTop;
+        const scrollHeight = activeScreen.scrollHeight;
+        const clientHeight = activeScreen.clientHeight;
         
-        // Swipe up at bottom = next screen
-        if (diffY > 60 && isAtBottom) {
-            // Only allow sequential navigation from welcome screen
-            if (currentScreen === 0) {
-                goToScreen(1);
-            }
+        const isAtTop = scrollTop <= 10;
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+        
+        // Swipe up at bottom of welcome screen → go to menu
+        if (diffY > 50 && state.currentScreen === 0 && isAtBottom) {
+            goToScreen(1);
+            return;
         }
         
-        // Swipe down at top = previous screen
-        if (diffY < -60 && isAtTop) {
-            if (currentScreen === 1) {
-                goToScreen(0);
-            }
+        // Swipe down at top of menu → go back to welcome
+        if (diffY < -50 && state.currentScreen === 1 && isAtTop) {
+            goToScreen(0);
+            return;
         }
-    }, { passive: true });
+    }
     
     // ============================================
     // Keyboard Navigation
     // ============================================
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            goToScreen(1); // Go to menu
+    function initKeyboardNavigation() {
+        document.addEventListener('keydown', handleKeyDown);
+    }
+    
+    function handleKeyDown(e) {
+        switch (e.key) {
+            case 'Escape':
+                // Go to menu from any screen except welcome
+                if (state.currentScreen !== 0 && state.currentScreen !== 1) {
+                    goToScreen(1);
+                } else if (state.currentScreen === 1) {
+                    goToScreen(0);
+                }
+                break;
+            
+            case 'ArrowLeft':
+            case 'Backspace':
+                // Go back
+                if (state.currentScreen > 1) {
+                    goToScreen(1);
+                } else if (state.currentScreen === 1) {
+                    goToScreen(0);
+                }
+                break;
+            
+            case 'Enter':
+            case ' ':
+                // If on welcome screen, go to menu
+                if (state.currentScreen === 0) {
+                    e.preventDefault();
+                    goToScreen(1);
+                }
+                break;
         }
-    });
+    }
     
     // ============================================
-    // Card Carousel
+    // Card Carousels
     // ============================================
-    const carousels = document.querySelectorAll('.card-carousel');
-    
-    carousels.forEach(carousel => {
-        const cards = carousel.querySelectorAll('.carousel-card');
-        const prevBtn = carousel.querySelector('.carousel-btn.prev');
-        const nextBtn = carousel.querySelector('.carousel-btn.next');
-        const dots = carousel.querySelectorAll('.carousel-dots .dot');
-        let currentCard = 0;
+    function initCarousels() {
+        const carouselEls = document.querySelectorAll('.card-carousel');
         
-        function updateCarousel() {
-            cards.forEach((card, i) => {
-                card.classList.remove('active', 'prev');
-                if (i === currentCard) {
-                    card.classList.add('active');
-                } else if (i < currentCard) {
-                    card.classList.add('prev');
-                }
-            });
+        carouselEls.forEach((carousel, carouselIndex) => {
+            const cards = carousel.querySelectorAll('.carousel-card');
+            const prevBtn = carousel.querySelector('.carousel-btn.prev');
+            const nextBtn = carousel.querySelector('.carousel-btn.next');
+            const dots = carousel.querySelectorAll('.carousel-dots .dot');
             
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentCard);
-            });
-        }
-        
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                if (currentCard > 0) {
-                    currentCard--;
-                    updateCarousel();
-                }
-            });
-        }
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                if (currentCard < cards.length - 1) {
-                    currentCard++;
-                    updateCarousel();
-                }
-            });
-        }
-        
-        // Swipe on carousel
-        let carouselTouchStartX = 0;
-        
-        carousel.addEventListener('touchstart', (e) => {
-            carouselTouchStartX = e.touches[0].clientX;
-        }, { passive: true });
-        
-        carousel.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const diff = carouselTouchStartX - touchEndX;
+            if (!cards.length) return;
             
-            if (Math.abs(diff) > 50) {
-                if (diff > 0 && currentCard < cards.length - 1) {
-                    currentCard++;
-                } else if (diff < 0 && currentCard > 0) {
-                    currentCard--;
+            const carouselState = {
+                currentCard: 0,
+                totalCards: cards.length,
+                touchStartX: 0
+            };
+            
+            state.carousels.set(carouselIndex, carouselState);
+            
+            function updateCarousel() {
+                cards.forEach((card, i) => {
+                    card.classList.remove('active', 'prev');
+                    if (i === carouselState.currentCard) {
+                        card.classList.add('active');
+                    } else if (i < carouselState.currentCard) {
+                        card.classList.add('prev');
+                    }
+                });
+                
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === carouselState.currentCard);
+                });
+                
+                // Update button states
+                if (prevBtn) {
+                    prevBtn.disabled = carouselState.currentCard === 0;
                 }
+                if (nextBtn) {
+                    nextBtn.disabled = carouselState.currentCard === carouselState.totalCards - 1;
+                }
+            }
+            
+            function goToCard(index) {
+                if (index < 0 || index >= carouselState.totalCards) return;
+                carouselState.currentCard = index;
                 updateCarousel();
             }
-        }, { passive: true });
-        
-        // Initialize
-        updateCarousel();
-    });
+            
+            // Button handlers
+            if (prevBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToCard(carouselState.currentCard - 1);
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToCard(carouselState.currentCard + 1);
+                });
+            }
+            
+            // Touch swipe on carousel
+            carousel.addEventListener('touchstart', (e) => {
+                carouselState.touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+            
+            carousel.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = carouselState.touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0) {
+                        goToCard(carouselState.currentCard + 1);
+                    } else {
+                        goToCard(carouselState.currentCard - 1);
+                    }
+                }
+            }, { passive: true });
+            
+            // Dot click navigation
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => goToCard(i));
+                dot.style.cursor = 'pointer';
+            });
+            
+            // Initialize
+            updateCarousel();
+        });
+    }
     
     // ============================================
     // CTA Button
     // ============================================
-    const ctaBtn = document.getElementById('ctaBtn');
-    if (ctaBtn) {
+    function initCTAButton() {
+        const ctaBtn = document.getElementById('ctaBtn');
+        if (!ctaBtn) return;
+        
+        let isSubmitting = false;
+        
         ctaBtn.addEventListener('click', () => {
-            // Visual feedback
-            ctaBtn.textContent = '✓ Demande envoyée !';
-            ctaBtn.style.background = '#4CAF50';
-            ctaBtn.style.color = '#fff';
+            if (isSubmitting) return;
+            isSubmitting = true;
             
+            const originalText = ctaBtn.textContent;
+            
+            // Success state
+            ctaBtn.textContent = '✓ Demande envoyée !';
+            ctaBtn.classList.add('success');
+            
+            // Reset after delay
             setTimeout(() => {
-                ctaBtn.textContent = 'Démarrer mon projet';
-                ctaBtn.style.background = '';
-                ctaBtn.style.color = '';
-            }, 3000);
+                ctaBtn.textContent = originalText;
+                ctaBtn.classList.remove('success');
+                isSubmitting = false;
+            }, 2500);
         });
     }
     
     // ============================================
-    // Scroll Reveal Animations
+    // Scroll Behavior
     // ============================================
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+    function initScrollBehavior() {
+        // Prevent overscroll on iOS
+        document.body.addEventListener('touchmove', (e) => {
+            const activeScreen = screens[state.currentScreen];
+            if (!activeScreen) return;
+            
+            const scrollTop = activeScreen.scrollTop;
+            const scrollHeight = activeScreen.scrollHeight;
+            const clientHeight = activeScreen.clientHeight;
+            
+            const isAtTop = scrollTop <= 0;
+            const isAtBottom = scrollTop + clientHeight >= scrollHeight;
+            
+            // Prevent overscroll when at boundaries
+            if ((isAtTop && e.touches[0].clientY > state.touchStartY) ||
+                (isAtBottom && e.touches[0].clientY < state.touchStartY)) {
+                // Allow the swipe navigation to handle this
+            }
+        }, { passive: true });
+        
+        // Update touch start for scroll boundary detection
+        document.body.addEventListener('touchstart', (e) => {
+            state.touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+    }
+    
+    // ============================================
+    // Utility: Debounce
+    // ============================================
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    // ============================================
+    // Expose API for debugging
+    // ============================================
+    window.BurgerHouseApp = {
+        goToScreen,
+        getState: () => ({ ...state }),
+        version: '2.0'
     };
     
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Add reveal animation to cards
-    document.querySelectorAll('.bento-card, .menu-card, .timeline-item, .principle-card, .team-role').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        revealObserver.observe(el);
-    });
-    
-    // Stagger animation delay
-    document.querySelectorAll('.screen').forEach(screen => {
-        const cards = screen.querySelectorAll('.bento-card, .menu-card, .timeline-item, .principle-card, .team-role, .excl-item');
-        cards.forEach((card, i) => {
-            card.style.transitionDelay = `${i * 0.05}s`;
-        });
-    });
-    
-    // ============================================
-    // Haptic Feedback (if supported)
-    // ============================================
-    function haptic(style = 'light') {
-        if ('vibrate' in navigator) {
-            const patterns = {
-                light: [10],
-                medium: [20],
-                heavy: [30]
-            };
-            navigator.vibrate(patterns[style] || patterns.light);
-        }
-    }
-    
-    // Add haptic to buttons
-    document.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => haptic('light'));
-    });
-    
-    // ============================================
-    // Prevent Pull-to-Refresh on Mobile
-    // ============================================
-    document.body.addEventListener('touchmove', (e) => {
-        const activeScreen = screens[currentScreen];
-        if (activeScreen && activeScreen.scrollTop === 0) {
-            // Allow normal scrolling behavior
-        }
-    }, { passive: false });
-    
-    // ============================================
-    // Initialize
-    // ============================================
-    screens[0].classList.add('active');
-    updateProgressDots();
-    
-    // Preload for smooth animations
-    screens.forEach(screen => {
-        screen.style.willChange = 'transform, opacity';
-    });
-    
-    console.log('🍔 Burger House Franchise Manual loaded!');
-});
+})();
