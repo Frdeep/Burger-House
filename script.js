@@ -543,12 +543,339 @@
     }
     
     // ============================================
+    // Burgerbot Chatbot
+    // ============================================
+    function initChatbot() {
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSendBtn = document.getElementById('chatSendBtn');
+        const quickReplies = document.getElementById('quickReplies');
+        const chatContainer = document.getElementById('chatContainer');
+        
+        if (!chatMessages || !chatInput) return;
+        
+        let conversationStep = 0;
+        let userName = '';
+        let userCity = '';
+        let hasExperience = null;
+        
+        const botResponses = {
+            welcome: [
+                "Bonjour ! 👋 Je suis Burgerbot, votre assistant expert en franchise Burger House.",
+                "Je suis là pour répondre à toutes vos questions et vous accompagner dans votre projet. Pour commencer, comment vous appelez-vous ?"
+            ],
+            afterName: (name) => [
+                `Enchanté ${name} ! 🍔`,
+                "C'est super de vous avoir ici. Dans quelle ville ou région souhaitez-vous ouvrir votre franchise ?"
+            ],
+            afterCity: (city) => [
+                `${city}, excellent choix ! C'est une zone avec un bon potentiel.`,
+                "Avez-vous déjà une expérience dans la restauration ?"
+            ],
+            withExperience: [
+                "Parfait ! Votre expérience sera un vrai atout. 💪",
+                "Notre formation de 4 semaines sera adaptée à votre profil pour renforcer vos compétences sur les spécificités Burger House."
+            ],
+            withoutExperience: [
+                "Pas de souci ! 76% de nos franchisés n'avaient aucune expérience avant de nous rejoindre. 🎓",
+                "Notre formation complète de 4 semaines vous donnera toutes les clés pour réussir."
+            ],
+            investment: [
+                "💰 L'investissement total se situe entre 200 000€ et 300 000€, incluant :",
+                "• Droit d'entrée : 25 000 - 35 000€\n• Travaux : 80 000 - 120 000€\n• Équipements : 60 000 - 80 000€\n• Fonds de roulement : 35 000 - 65 000€"
+            ],
+            redevances: [
+                "📊 Les redevances sont très compétitives :",
+                "• 5% du CA HT pour l'exploitation\n• 2% du CA HT pour la communication\n\nEn contrepartie, vous bénéficiez d'un accompagnement permanent et de la force du réseau !"
+            ],
+            formation: [
+                "🎓 La formation dure 4 semaines et couvre :",
+                "• Semaine 1 : Immersion dans l'univers Burger House\n• Semaine 2 : Maîtrise culinaire et recettes\n• Semaine 3 : Service client et hygiène HACCP\n• Semaine 4 : Management et gestion\n\nEt après l'ouverture, un formateur reste 2 semaines avec vous !"
+            ],
+            exclusivite: [
+                "🛡️ L'exclusivité territoriale est un point clé de notre contrat.",
+                "Vous bénéficiez d'une zone protégée où aucun autre Burger House ne pourra s'implanter. La délimitation se fait selon la zone de chalandise, généralement 3-5 km en zone urbaine."
+            ],
+            contrat: [
+                "📋 Le contrat de franchise a une durée de 5 ans en France (7 ans à l'international), renouvelable.",
+                "Il est encadré par la loi Doubin qui vous protège : vous recevrez le DIP (Document d'Information Précontractuelle) 20 jours avant la signature."
+            ],
+            rentabilite: [
+                "📈 Nos objectifs de rentabilité :",
+                "• CA mensuel : 80 000 - 120 000€\n• Ticket moyen : 15-18€\n• Rentabilité nette : 12-18%\n• Seuil de rentabilité : 12-18 mois\n\nBien sûr, cela dépend de l'emplacement et de votre engagement !"
+            ],
+            nextSteps: [
+                "🚀 Pour démarrer votre projet, voici les prochaines étapes :",
+                "1. Candidature et entretien\n2. Validation par le comité\n3. Formation 4 semaines\n4. Recherche du local\n5. Travaux d'aménagement\n6. Ouverture avec accompagnement\n\nVoulez-vous qu'on planifie un premier entretien ?"
+            ],
+            entretien: [
+                "Parfait ! 🎉 Notre équipe développement va vous contacter très rapidement.",
+                "En attendant, n'hésitez pas à consulter les autres sections du manuel pour vous familiariser avec notre concept. Avez-vous d'autres questions ?"
+            ],
+            default: [
+                "Je comprends votre question ! 🤔",
+                "Pour une réponse plus précise, je vous invite à contacter notre équipe développement qui pourra vous accompagner personnellement. Avez-vous d'autres questions sur la franchise ?"
+            ],
+            thanks: [
+                `Merci ${userName || 'à vous'} ! 😊`,
+                "C'était un plaisir d'échanger. N'hésitez pas à revenir si vous avez d'autres questions. Bonne continuation dans votre projet ! 🍔"
+            ]
+        };
+        
+        const quickReplyOptions = {
+            initial: [
+                { text: "💰 Investissement", action: "investment" },
+                { text: "🎓 Formation", action: "formation" },
+                { text: "📋 Contrat", action: "contrat" },
+                { text: "📈 Rentabilité", action: "rentabilite" }
+            ],
+            afterInfo: [
+                { text: "🛡️ Exclusivité", action: "exclusivite" },
+                { text: "💵 Redevances", action: "redevances" },
+                { text: "🚀 Prochaines étapes", action: "nextSteps" },
+                { text: "Merci !", action: "thanks" }
+            ],
+            experience: [
+                { text: "✅ Oui, j'ai de l'expérience", action: "hasExperience" },
+                { text: "❌ Non, je débute", action: "noExperience" }
+            ],
+            entretien: [
+                { text: "Oui, planifions !", action: "entretien" },
+                { text: "J'ai d'autres questions", action: "moreQuestions" }
+            ]
+        };
+        
+        function addMessage(content, isBot = true, delay = 0) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `chat-message ${isBot ? 'bot' : 'user'}`;
+                    messageDiv.innerHTML = `
+                        <div class="message-avatar">${isBot ? '🍔' : '👤'}</div>
+                        <div class="message-content">
+                            <p>${content.replace(/\n/g, '<br>')}</p>
+                        </div>
+                    `;
+                    chatMessages.appendChild(messageDiv);
+                    scrollToBottom();
+                    resolve();
+                }, delay);
+            });
+        }
+        
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">🍔</div>
+                <div class="message-content">
+                    <div class="typing-indicator">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+        
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+        
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showQuickReplies(options) {
+            quickReplies.innerHTML = '';
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'quick-reply-btn';
+                btn.textContent = option.text;
+                btn.onclick = () => handleQuickReply(option);
+                quickReplies.appendChild(btn);
+            });
+        }
+        
+        function hideQuickReplies() {
+            quickReplies.innerHTML = '';
+        }
+        
+        async function sendBotMessages(messages, afterOptions = null) {
+            addTypingIndicator();
+            await new Promise(r => setTimeout(r, 800));
+            removeTypingIndicator();
+            
+            for (let i = 0; i < messages.length; i++) {
+                await addMessage(messages[i], true, i * 600);
+            }
+            
+            if (afterOptions) {
+                setTimeout(() => showQuickReplies(afterOptions), messages.length * 600 + 300);
+            }
+        }
+        
+        async function handleUserMessage(text) {
+            await addMessage(text, false);
+            hideQuickReplies();
+            
+            const lowerText = text.toLowerCase();
+            
+            // Check for keywords
+            if (lowerText.includes('investissement') || lowerText.includes('coût') || lowerText.includes('prix') || lowerText.includes('budget')) {
+                await sendBotMessages(botResponses.investment, quickReplyOptions.afterInfo);
+                return;
+            }
+            if (lowerText.includes('formation') || lowerText.includes('apprendre')) {
+                await sendBotMessages(botResponses.formation, quickReplyOptions.afterInfo);
+                return;
+            }
+            if (lowerText.includes('contrat') || lowerText.includes('juridique') || lowerText.includes('doubin')) {
+                await sendBotMessages(botResponses.contrat, quickReplyOptions.afterInfo);
+                return;
+            }
+            if (lowerText.includes('rentab') || lowerText.includes('chiffre') || lowerText.includes('ca ') || lowerText.includes('objectif')) {
+                await sendBotMessages(botResponses.rentabilite, quickReplyOptions.afterInfo);
+                return;
+            }
+            if (lowerText.includes('exclusiv') || lowerText.includes('territoire') || lowerText.includes('zone')) {
+                await sendBotMessages(botResponses.exclusivite, quickReplyOptions.afterInfo);
+                return;
+            }
+            if (lowerText.includes('redevance') || lowerText.includes('royalt') || lowerText.includes('pourcentage')) {
+                await sendBotMessages(botResponses.redevances, quickReplyOptions.afterInfo);
+                return;
+            }
+            if (lowerText.includes('étape') || lowerText.includes('processus') || lowerText.includes('comment') || lowerText.includes('démarrer')) {
+                await sendBotMessages(botResponses.nextSteps, quickReplyOptions.entretien);
+                return;
+            }
+            if (lowerText.includes('merci') || lowerText.includes('super') || lowerText.includes('génial')) {
+                await sendBotMessages(botResponses.thanks, []);
+                return;
+            }
+            
+            // Conversation flow
+            if (conversationStep === 0) {
+                // User just said their name
+                userName = text.split(' ')[0];
+                userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+                conversationStep = 1;
+                await sendBotMessages(botResponses.afterName(userName), []);
+                return;
+            }
+            
+            if (conversationStep === 1) {
+                // User said their city
+                userCity = text;
+                conversationStep = 2;
+                await sendBotMessages(botResponses.afterCity(userCity), quickReplyOptions.experience);
+                return;
+            }
+            
+            // Default response
+            await sendBotMessages(botResponses.default, quickReplyOptions.initial);
+        }
+        
+        async function handleQuickReply(option) {
+            await addMessage(option.text, false);
+            hideQuickReplies();
+            
+            switch (option.action) {
+                case 'investment':
+                    await sendBotMessages(botResponses.investment, quickReplyOptions.afterInfo);
+                    break;
+                case 'formation':
+                    await sendBotMessages(botResponses.formation, quickReplyOptions.afterInfo);
+                    break;
+                case 'contrat':
+                    await sendBotMessages(botResponses.contrat, quickReplyOptions.afterInfo);
+                    break;
+                case 'rentabilite':
+                    await sendBotMessages(botResponses.rentabilite, quickReplyOptions.afterInfo);
+                    break;
+                case 'exclusivite':
+                    await sendBotMessages(botResponses.exclusivite, quickReplyOptions.afterInfo);
+                    break;
+                case 'redevances':
+                    await sendBotMessages(botResponses.redevances, quickReplyOptions.afterInfo);
+                    break;
+                case 'nextSteps':
+                    await sendBotMessages(botResponses.nextSteps, quickReplyOptions.entretien);
+                    break;
+                case 'entretien':
+                    await sendBotMessages(botResponses.entretien, quickReplyOptions.initial);
+                    break;
+                case 'moreQuestions':
+                    await sendBotMessages(["Bien sûr ! Que voulez-vous savoir ?"], quickReplyOptions.initial);
+                    break;
+                case 'hasExperience':
+                    hasExperience = true;
+                    conversationStep = 3;
+                    await sendBotMessages(botResponses.withExperience, quickReplyOptions.initial);
+                    break;
+                case 'noExperience':
+                    hasExperience = false;
+                    conversationStep = 3;
+                    await sendBotMessages(botResponses.withoutExperience, quickReplyOptions.initial);
+                    break;
+                case 'thanks':
+                    await sendBotMessages(botResponses.thanks, []);
+                    break;
+                default:
+                    await sendBotMessages(botResponses.default, quickReplyOptions.initial);
+            }
+        }
+        
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            
+            chatInput.value = '';
+            handleUserMessage(text);
+        }
+        
+        // Event listeners
+        chatSendBtn.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+        
+        // Start conversation when section becomes active
+        let chatStarted = false;
+        const chatbotScreen = document.querySelector('[data-index="9"]');
+        
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.target.classList.contains('active') && !chatStarted) {
+                    chatStarted = true;
+                    setTimeout(() => {
+                        sendBotMessages(botResponses.welcome, []);
+                    }, 500);
+                }
+            });
+        });
+        
+        if (chatbotScreen) {
+            observer.observe(chatbotScreen, { attributes: true, attributeFilter: ['class'] });
+        }
+    }
+    
+    // Initialize chatbot
+    initChatbot();
+    
+    // ============================================
     // Expose API for debugging
     // ============================================
     window.BurgerHouseApp = {
         goToScreen,
         getState: () => ({ ...state }),
-        version: '2.0'
+        version: '3.0'
     };
     
 })();

@@ -82,7 +82,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step" aria-label="Section 1 sur 9">1/9</span>
+                    <span class="screen-step" aria-label="Section 1 sur 9">1/10</span>
                 </div>
                 
                 <h2 class="screen-title">Sommaire</h2>
@@ -153,9 +153,18 @@
                     </button>
                     
                     <button class="menu-card" data-goto="9">
+                        <div class="menu-icon">🤖</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Burgerbot</span>
+                            <span class="menu-desc">Expert franchise IA</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="10">
                         <div class="menu-icon">👥</div>
                         <div class="menu-text">
-                            <span class="menu-label">Équipe</span>
+                            <span class="menu-label">Équipe & Contact</span>
                             <span class="menu-desc">Ressources humaines</span>
                         </div>
                         <div class="menu-arrow">→</div>
@@ -173,7 +182,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">2/9</span>
+                    <span class="screen-step">2/10</span>
                 </div>
                 
                 <div class="section-badge">CRÉATION DE FRANCHISE</div>
@@ -227,7 +236,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">3/9</span>
+                    <span class="screen-step">3/10</span>
                 </div>
                 
                 <div class="section-badge">LOI DOUBIN</div>
@@ -324,7 +333,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">4/9</span>
+                    <span class="screen-step">4/10</span>
                 </div>
                 
                 <div class="section-badge">EXPANSION</div>
@@ -386,7 +395,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">5/9</span>
+                    <span class="screen-step">5/10</span>
                 </div>
                 
                 <div class="section-badge">VOTRE RÉUSSITE</div>
@@ -457,7 +466,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">6/9</span>
+                    <span class="screen-step">6/10</span>
                 </div>
                 
                 <div class="section-badge">PROTECTION</div>
@@ -516,7 +525,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">7/9</span>
+                    <span class="screen-step">7/10</span>
                 </div>
                 
                 <div class="section-badge">FINANCES</div>
@@ -593,7 +602,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">8/9</span>
+                    <span class="screen-step">8/10</span>
                 </div>
                 
                 <div class="section-badge">OBLIGATOIRE</div>
@@ -646,7 +655,7 @@
                 </div>
                 
                 <button class="btn-primary" data-goto="9">
-                    <span>Équipe</span>
+                    <span>Burgerbot 🤖</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -654,8 +663,59 @@
             </div>
         </section>
 
-        <!-- Section 9: Équipe & Contact -->
+        <!-- Section 9: Burgerbot -->
         <section class="screen" data-index="9">
+            <div class="screen-inner chatbot-screen">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">9/10</span>
+                </div>
+                
+                <div class="chatbot-header">
+                    <div class="chatbot-avatar">
+                        <span>🍔</span>
+                    </div>
+                    <div class="chatbot-info">
+                        <h2>Burgerbot</h2>
+                        <span class="chatbot-status"><span class="status-dot"></span> Expert Franchise en ligne</span>
+                    </div>
+                </div>
+                
+                <div class="chat-container" id="chatContainer">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Messages will be inserted here -->
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <div class="quick-replies" id="quickReplies">
+                        <!-- Quick reply buttons -->
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chatInput" placeholder="Posez votre question..." autocomplete="off">
+                        <button class="chat-send-btn" id="chatSendBtn" aria-label="Envoyer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" data-goto="10">
+                    <span>Équipe & Contact</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 10: Équipe & Contact -->
+        <section class="screen" data-index="10">
             <div class="screen-inner">
                 <div class="screen-header">
                     <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
@@ -663,7 +723,7 @@
                             <path d="M19 12H5M12 19l-7-7 7-7"/>
                         </svg>
                     </button>
-                    <span class="screen-step">9/9</span>
+                    <span class="screen-step">10/10</span>
                 </div>
                 
                 <div class="section-badge">RESSOURCES HUMAINES</div>
