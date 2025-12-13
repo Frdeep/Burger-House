@@ -2,541 +2,733 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Burger House - Manuel de Franchise</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="logo.svg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#FFBE0B">
 </head>
 <body>
-    <!-- Navigation Mobile -->
-    <nav class="nav-mobile">
-        <div class="nav-logo">
-            <img src="logo.svg" alt="Burger House" class="logo-img">
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splash">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="logo.svg" alt="Burger House">
+            </div>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
         </div>
-        <button class="nav-menu-btn" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </nav>
-
-    <!-- Menu Mobile Overlay -->
-    <div class="menu-overlay">
-        <ul class="menu-list">
-            <li><a href="#accueil" data-section="0">Accueil</a></li>
-            <li><a href="#pourquoi" data-section="1">Pourquoi Nous</a></li>
-            <li><a href="#contrat-france" data-section="2">Contrat France</a></li>
-            <li><a href="#contrat-international" data-section="3">International</a></li>
-            <li><a href="#formation" data-section="4">Formation</a></li>
-            <li><a href="#exclusivite" data-section="5">Exclusivité</a></li>
-            <li><a href="#modele-economique" data-section="6">Modèle Économique</a></li>
-            <li><a href="#haccp" data-section="7">HACCP & Hygiène</a></li>
-            <li><a href="#rh" data-section="8">Ressources Humaines</a></li>
-            <li><a href="#contact" data-section="9">Contact</a></li>
-        </ul>
     </div>
 
-    <!-- Progress Indicator -->
-    <div class="progress-bar">
-        <div class="progress-fill"></div>
-    </div>
-
-    <!-- Main Container -->
-    <main class="main-container">
+    <!-- App Container -->
+    <div class="app" id="app">
         
-        <!-- Section 0: Accueil -->
-        <section class="slide active" id="accueil" data-index="0">
-            <div class="slide-content">
-                <div class="hero-badge">DOCUMENT CONFIDENTIEL</div>
-                <div class="logo-hero">
-                    <img src="logo.svg" alt="Burger House" class="logo-large">
+        <!-- Section 0: Welcome -->
+        <section class="screen active" data-index="0">
+            <div class="screen-inner">
+                <div class="welcome-badge">DOCUMENT CONFIDENTIEL • DÉC 2025</div>
+                
+                <div class="welcome-logo">
+                    <img src="logo.svg" alt="Burger House">
                 </div>
-                <h1 class="hero-title">MANUEL DE<br>FRANCHISE</h1>
-                <p class="hero-subtitle">BURGER HOUSE</p>
-                <div class="hero-tagline">
-                    <span class="quote-mark">"</span>
-                    Manger un burger est bien,<br>
-                    mais manger à Burger House c'est mieux.
-                    <span class="quote-mark">"</span>
+                
+                <h1 class="welcome-title">Manuel de<br>Franchise</h1>
+                
+                <div class="welcome-quote">
+                    <p>"Manger un burger est bien,<br>mais manger à Burger House c'est mieux."</p>
                 </div>
-                <div class="hero-meta">
-                    <span class="tag">Franchise</span>
-                    <span class="tag">Juridique</span>
-                    <span class="tag">Formation</span>
-                    <span class="tag">Accompagnement</span>
+                
+                <div class="welcome-tags">
+                    <span>Franchise</span>
+                    <span>Juridique</span>
+                    <span>Formation</span>
                 </div>
-                <div class="scroll-indicator">
-                    <span>Glissez pour explorer</span>
-                    <div class="scroll-arrow">↓</div>
+                
+                <button class="btn-primary btn-discover" data-goto="1">
+                    <span>Découvrir le manuel</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                
+                <div class="swipe-hint">
+                    <div class="swipe-icon"></div>
+                    <span>ou glissez vers le haut</span>
                 </div>
             </div>
         </section>
 
-        <!-- Section 1: Pourquoi Burger House -->
-        <section class="slide" id="pourquoi" data-index="1">
-            <div class="slide-content">
-                <div class="section-label">CRÉATION DE FRANCHISE</div>
-                <h2 class="section-title">Pourquoi Rejoindre<br>Burger House</h2>
+        <!-- Section 1: Sommaire -->
+        <section class="screen" data-index="1">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="0">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">1/9</span>
+                </div>
+                
+                <h2 class="screen-title">Sommaire</h2>
+                <p class="screen-subtitle">Explorez chaque section du manuel</p>
+                
+                <div class="menu-grid">
+                    <button class="menu-card" data-goto="2">
+                        <div class="menu-icon">🍔</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Présentation</span>
+                            <span class="menu-desc">Notre concept premium</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="3">
+                        <div class="menu-icon">📋</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Contrat France</span>
+                            <span class="menu-desc">Cadre juridique Loi Doubin</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="4">
+                        <div class="menu-icon">🌍</div>
+                        <div class="menu-text">
+                            <span class="menu-label">International</span>
+                            <span class="menu-desc">OHADA & Maghreb</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="5">
+                        <div class="menu-icon">🎓</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Formation</span>
+                            <span class="menu-desc">4 semaines personnalisées</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="6">
+                        <div class="menu-icon">🛡️</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Exclusivité</span>
+                            <span class="menu-desc">Protection territoriale</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="7">
+                        <div class="menu-icon">💰</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Investissement</span>
+                            <span class="menu-desc">Modèle économique</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="8">
+                        <div class="menu-icon">✅</div>
+                        <div class="menu-text">
+                            <span class="menu-label">HACCP & Hygiène</span>
+                            <span class="menu-desc">Normes obligatoires</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="9">
+                        <div class="menu-icon">👥</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Équipe</span>
+                            <span class="menu-desc">Ressources humaines</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Présentation -->
+        <section class="screen" data-index="2">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">2/9</span>
+                </div>
+                
+                <div class="section-badge">CRÉATION DE FRANCHISE</div>
+                <h2 class="screen-title">Pourquoi Burger House ?</h2>
                 
                 <div class="bento-grid">
-                    <div class="bento-card bento-large">
-                        <div class="card-number">1</div>
+                    <div class="bento-card bento-featured">
+                        <div class="bento-number">1</div>
                         <h3>Concept Premium</h3>
-                        <p>Restauration rapide haut de gamme : viandes françaises Label Rouge, pains artisanaux quotidiens, sauces maison selon recettes propriétaires.</p>
+                        <p>Viandes françaises Label Rouge, pains artisanaux quotidiens, sauces maison selon recettes propriétaires.</p>
                     </div>
+                    
                     <div class="bento-card">
-                        <div class="card-number">2</div>
+                        <div class="bento-number">2</div>
                         <h3>Modèle Éprouvé</h3>
-                        <p>76% des franchisés sont des primo-accédants. Bénéficiez d'une notoriété immédiate sans les années d'essais-erreurs.</p>
+                        <p>76% des franchisés sont des primo-accédants.</p>
                     </div>
+                    
                     <div class="bento-card">
-                        <div class="card-number">3</div>
-                        <h3>Investissement Structuré</h3>
-                        <p>200 000 à 300 000 EUR d'investissement total incluant droits d'entrée, aménagement et fonds de roulement.</p>
-                    </div>
-                    <div class="bento-card bento-highlight">
-                        <div class="card-icon">✓</div>
+                        <div class="bento-number">3</div>
                         <h3>Support 7j/7</h3>
-                        <p>Une équipe dédiée qui répond présent quand vous en avez besoin.</p>
+                        <p>Équipe dédiée à votre réussite.</p>
+                    </div>
+                    
+                    <div class="bento-card bento-dark">
+                        <div class="bento-stat">200-300K€</div>
+                        <span>Investissement total</span>
                     </div>
                 </div>
+                
+                <div class="info-box">
+                    <div class="info-icon">💡</div>
+                    <p><strong>Bon à savoir :</strong> Notre formation fait la différence même sans expérience en restauration !</p>
+                </div>
+                
+                <button class="btn-primary" data-goto="3">
+                    <span>Contrat France</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
-        <!-- Section 2: Contrat France -->
-        <section class="slide" id="contrat-france" data-index="2">
-            <div class="slide-content">
-                <div class="section-label">MODÈLE DE CONTRAT DE FRANCHISE</div>
-                <h2 class="section-title">France - Structure<br>Contractuelle</h2>
-                
-                <div class="contract-header">
-                    <div class="contract-icon">📄</div>
-                    <span>Voir le Contrat Complet</span>
+        <!-- Section 3: Contrat France -->
+        <section class="screen" data-index="3">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">3/9</span>
                 </div>
                 
-                <div class="card-stack-container">
-                    <div class="card-stack">
-                        <div class="stack-card" data-card="0">
-                            <div class="card-number">1</div>
-                            <h4>Identification des parties</h4>
-                            <p>Franchiseur: Burger House (RCS) / Franchisé: Personne morale ou physique</p>
+                <div class="section-badge">LOI DOUBIN</div>
+                <h2 class="screen-title">Contrat France</h2>
+                
+                <div class="card-carousel" id="contractCards">
+                    <div class="carousel-track">
+                        <div class="carousel-card active">
+                            <div class="card-num">01</div>
+                            <h4>Identification</h4>
+                            <p>Franchiseur : Burger House SAS (RCS)</p>
+                            <p>Franchisé : Personne morale ou physique</p>
                         </div>
-                        <div class="stack-card" data-card="1">
-                            <div class="card-number">2</div>
-                            <h4>Objet du contrat</h4>
-                            <p>Droit d'exploitation du concept, usage de la marque, transmission du savoir-faire</p>
+                        <div class="carousel-card">
+                            <div class="card-num">02</div>
+                            <h4>Durée</h4>
+                            <p>5 ans renouvelable par tacite reconduction</p>
+                            <p>Dénonciation 6 mois avant échéance</p>
                         </div>
-                        <div class="stack-card" data-card="2">
-                            <div class="card-number">3</div>
-                            <h4>Durée du contrat</h4>
-                            <p>Durée initiale de 5 ans, conditions de renouvellement définies</p>
-                        </div>
-                        <div class="stack-card" data-card="3">
-                            <div class="card-number">4</div>
-                            <h4>Territoire concédé</h4>
-                            <p>Délimitation géographique de l'exclusivité, droits d'implantation</p>
-                        </div>
-                        <div class="stack-card" data-card="4">
-                            <div class="card-number">5</div>
+                        <div class="carousel-card">
+                            <div class="card-num">03</div>
                             <h4>Droits d'entrée</h4>
-                            <p>25 000€ HT, modalités de paiement, caractère non remboursable</p>
+                            <p class="big-number">25 000€ HT</p>
+                            <p>Payable à la signature</p>
                         </div>
-                        <div class="stack-card" data-card="5">
-                            <div class="card-number">6</div>
+                        <div class="carousel-card">
+                            <div class="card-num">04</div>
                             <h4>Redevances</h4>
-                            <p>5% du CA HT (exploitation) + 2% (marketing/communication)</p>
+                            <div class="card-stats">
+                                <div><span class="stat">5%</span> Exploitation</div>
+                                <div><span class="stat">2%</span> Communication</div>
+                            </div>
                         </div>
-                        <div class="stack-card" data-card="6">
-                            <div class="card-number">7</div>
-                            <h4>Obligations franchiseur</h4>
-                            <p>Transmission savoir-faire, formation, assistance technique et commerciale</p>
+                        <div class="carousel-card">
+                            <div class="card-num">05</div>
+                            <h4>Obligations Franchiseur</h4>
+                            <ul>
+                                <li>Formation initiale</li>
+                                <li>Manuel opératoire</li>
+                                <li>Assistance permanente</li>
+                            </ul>
                         </div>
-                        <div class="stack-card" data-card="7">
-                            <div class="card-number">8</div>
-                            <h4>Obligations franchisé</h4>
-                            <p>Respect des standards, exploitation personnelle, normes hygiène/sécurité</p>
+                        <div class="carousel-card">
+                            <div class="card-num">06</div>
+                            <h4>Obligations Franchisé</h4>
+                            <ul>
+                                <li>Respect des normes</li>
+                                <li>Fournisseurs agréés</li>
+                                <li>Formations continues</li>
+                            </ul>
                         </div>
-                        <div class="stack-card" data-card="8">
-                            <div class="card-number">9</div>
-                            <h4>Aménagement point de vente</h4>
-                            <p>Charte architecturale, concept visuel, validation du local</p>
+                        <div class="carousel-card">
+                            <div class="card-num">07</div>
+                            <h4>Non-concurrence</h4>
+                            <p>Pendant le contrat et 1 an après</p>
+                            <p>Dans un rayon défini contractuellement</p>
                         </div>
                     </div>
-                    <div class="stack-navigation">
-                        <button class="stack-nav-btn prev" aria-label="Précédent">←</button>
-                        <span class="stack-counter">1/9</span>
-                        <button class="stack-nav-btn next" aria-label="Suivant">→</button>
+                    
+                    <div class="carousel-nav">
+                        <button class="carousel-btn prev" aria-label="Précédent">←</button>
+                        <div class="carousel-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <button class="carousel-btn next" aria-label="Suivant">→</button>
                     </div>
                 </div>
                 
-                <div class="legal-footer">
-                    <span>Contrat soumis au droit français</span>
-                    <span>•</span>
-                    <span>Loi Doubin (DIP) applicable</span>
+                <div class="legal-note">
+                    <span>📜</span> Contrat soumis au droit français • Tribunaux compétents
                 </div>
+                
+                <button class="btn-primary" data-goto="4">
+                    <span>International</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
-        <!-- Section 3: Contrat International -->
-        <section class="slide" id="contrat-international" data-index="3">
-            <div class="slide-content">
-                <div class="section-label">EXPANSION INTERNATIONALE</div>
-                <h2 class="section-title">Contrat International</h2>
+        <!-- Section 4: International -->
+        <section class="screen" data-index="4">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">4/9</span>
+                </div>
                 
-                <div class="bento-grid bento-international">
-                    <div class="bento-card bento-map">
-                        <div class="map-icon">🌍</div>
+                <div class="section-badge">EXPANSION</div>
+                <h2 class="screen-title">International</h2>
+                
+                <div class="zone-card">
+                    <div class="zone-header">
+                        <span class="zone-icon">🌍</span>
                         <h3>Zone OHADA</h3>
-                        <p>17 États membres bénéficiant d'une harmonisation du droit des affaires</p>
                     </div>
-                    <div class="bento-card">
-                        <div class="card-icon">💱</div>
-                        <h3>Stabilité FCFA</h3>
-                        <p>1€ = 655,957 FCFA<br>Taux de change fixe</p>
-                    </div>
-                    <div class="bento-card bento-large">
-                        <h3>États Membres OHADA</h3>
-                        <div class="country-tags">
-                            <span>Bénin</span><span>Burkina Faso</span><span>Cameroun</span>
-                            <span>Centrafrique</span><span>Comores</span><span>Congo</span>
-                            <span>RDC</span><span>Côte d'Ivoire</span><span>Gabon</span>
-                            <span>Guinée</span><span>Mali</span><span>Niger</span>
-                            <span>Sénégal</span><span>Tchad</span><span>Togo</span>
-                        </div>
-                    </div>
-                    <div class="bento-card bento-highlight">
-                        <h3>Maghreb</h3>
-                        <p>Le Maroc : leader de la franchise africaine avec +650 réseaux actifs</p>
+                    <p>17 États membres • Harmonisation du droit des affaires</p>
+                    <div class="country-chips">
+                        <span>Sénégal</span><span>Côte d'Ivoire</span><span>Cameroun</span>
+                        <span>Mali</span><span>Gabon</span><span>Congo</span>
+                        <span class="more">+11 pays</span>
                     </div>
                 </div>
                 
-                <div class="info-banner">
-                    <span class="banner-icon">📋</span>
-                    <p>Contrat de 7 ans renouvelable • Arbitrage CCJA • Droit OHADA applicable</p>
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <span class="stat-value">1€</span>
+                        <span class="stat-label">= 655,957 FCFA</span>
+                        <span class="stat-note">Taux fixe</span>
+                    </div>
+                    <div class="stat-box highlight">
+                        <span class="stat-value">7 ans</span>
+                        <span class="stat-label">Durée contrat</span>
+                        <span class="stat-note">Renouvelable</span>
+                    </div>
                 </div>
+                
+                <div class="zone-card zone-maghreb">
+                    <div class="zone-header">
+                        <span class="zone-icon">🇲🇦</span>
+                        <h3>Maghreb</h3>
+                    </div>
+                    <p>Le Maroc : leader de la franchise africaine avec <strong>+650 réseaux actifs</strong></p>
+                </div>
+                
+                <div class="info-box dark">
+                    <p><strong>Arbitrage CCJA</strong> • Droit OHADA applicable • Master-franchise disponible</p>
+                </div>
+                
+                <button class="btn-primary" data-goto="5">
+                    <span>Formation</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
-        <!-- Section 4: Formation -->
-        <section class="slide" id="formation" data-index="4">
-            <div class="slide-content">
-                <div class="section-label">VOTRE RÉUSSITE</div>
-                <h2 class="section-title">Formation 100%<br>Personnalisée</h2>
-                
-                <div class="formation-intro">
-                    <div class="intro-icon">✓</div>
-                    <p>Chaque franchisé est unique. Votre formation le sera aussi.</p>
+        <!-- Section 5: Formation -->
+        <section class="screen" data-index="5">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">5/9</span>
                 </div>
                 
-                <div class="timeline-container">
+                <div class="section-badge">VOTRE RÉUSSITE</div>
+                <h2 class="screen-title">Formation</h2>
+                
+                <div class="highlight-box">
+                    <span class="highlight-icon">✓</span>
+                    <p>100% personnalisée selon vos capacités, disponibilités et demandes</p>
+                </div>
+                
+                <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-week">SEM 1</div>
+                        <div class="timeline-marker">S1</div>
                         <div class="timeline-content">
                             <h4>Immersion & Culture</h4>
-                            <p>ADN BURGER HOUSE, valeurs, visites réseau</p>
+                            <p>ADN Burger House, valeurs, visites réseau</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-week">SEM 2</div>
+                        <div class="timeline-marker">S2</div>
                         <div class="timeline-content">
                             <h4>Maîtrise Culinaire</h4>
                             <p>Recettes propriétaires, techniques, sauces maison</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-week">SEM 3</div>
+                        <div class="timeline-marker">S3</div>
                         <div class="timeline-content">
-                            <h4>Excellence Service & Hygiène</h4>
-                            <p>Certification HACCP (14h), standards accueil</p>
+                            <h4>Excellence Service</h4>
+                            <p>Certification HACCP 14h, standards accueil</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-week">SEM 4</div>
+                        <div class="timeline-marker">S4</div>
                         <div class="timeline-content">
-                            <h4>Leadership & Pilotage</h4>
-                            <p>Management, marketing local, certification finale</p>
+                            <h4>Leadership</h4>
+                            <p>Management, marketing local, certification</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="formation-footer">
-                    <div class="formation-stat">
-                        <span class="stat-number">2+</span>
+                <div class="stats-row compact">
+                    <div class="stat-box small">
+                        <span class="stat-value">2+</span>
                         <span class="stat-label">Formateurs sur site</span>
                     </div>
-                    <div class="formation-stat">
-                        <span class="stat-number">24/7</span>
+                    <div class="stat-box small">
+                        <span class="stat-value">24/7</span>
                         <span class="stat-label">E-learning Academy</span>
                     </div>
                 </div>
+                
+                <button class="btn-primary" data-goto="6">
+                    <span>Exclusivité</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
-        <!-- Section 5: Exclusivité -->
-        <section class="slide" id="exclusivite" data-index="5">
-            <div class="slide-content">
-                <div class="section-label">PROTECTION TERRITORIALE</div>
-                <h2 class="section-title">Droit d'Exclusivité</h2>
-                
-                <div class="warning-banner">
-                    <span class="warning-icon">⚠️</span>
-                    <p><strong>PRINCIPE FONDAMENTAL</strong><br>Personne n'a l'exclusivité tant que ce n'est pas conclu par un accord juridique formel.</p>
+        <!-- Section 6: Exclusivité -->
+        <section class="screen" data-index="6">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">6/9</span>
                 </div>
                 
-                <div class="exclusivity-types">
-                    <div class="excl-card">
-                        <div class="excl-number">1</div>
-                        <h4>Exclusivité d'enseigne</h4>
-                        <p>Vous seul pouvez apposer l'enseigne BURGER HOUSE sur votre territoire</p>
+                <div class="section-badge">PROTECTION</div>
+                <h2 class="screen-title">Exclusivité</h2>
+                
+                <div class="warning-box">
+                    <div class="warning-icon">⚠️</div>
+                    <p><strong>Principe fondamental</strong><br>Personne n'a l'exclusivité sans accord juridique formel.</p>
+                </div>
+                
+                <div class="exclusivity-list">
+                    <div class="excl-item">
+                        <div class="excl-num">1</div>
+                        <div class="excl-content">
+                            <h4>Exclusivité d'enseigne</h4>
+                            <p>Vous seul pouvez apposer l'enseigne sur votre territoire</p>
+                        </div>
                     </div>
-                    <div class="excl-card">
-                        <div class="excl-number">2</div>
-                        <h4>Exclusivité de franchise</h4>
-                        <p>Aucun autre franchisé ne peut s'implanter sur votre zone</p>
+                    <div class="excl-item">
+                        <div class="excl-num">2</div>
+                        <div class="excl-content">
+                            <h4>Exclusivité de franchise</h4>
+                            <p>Aucun autre franchisé sur votre zone</p>
+                        </div>
                     </div>
-                    <div class="excl-card featured">
-                        <div class="excl-number">3</div>
-                        <h4>Exclusivité renforcée</h4>
-                        <p>Protection maximale : ni franchiseur ni franchisé concurrent</p>
-                        <span class="badge">STANDARD BH</span>
+                    <div class="excl-item featured">
+                        <div class="excl-badge">STANDARD BH</div>
+                        <div class="excl-num">3</div>
+                        <div class="excl-content">
+                            <h4>Exclusivité renforcée</h4>
+                            <p>Protection maximale : ni franchiseur ni concurrent</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="performance-alert">
-                    <h4>⚠️ Clause de Performance</h4>
-                    <p>Si la franchise n'atteint pas son seuil de rentabilité après <strong>18 mois</strong>, une cessation sera étudiée.</p>
+                <div class="alert-box">
+                    <h4>⏱️ Clause de performance</h4>
+                    <p>Seuil de rentabilité à atteindre sous <strong>18 mois</strong></p>
                 </div>
+                
+                <button class="btn-primary" data-goto="7">
+                    <span>Investissement</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
-        <!-- Section 6: Modèle Économique -->
-        <section class="slide" id="modele-economique" data-index="6">
-            <div class="slide-content">
-                <div class="section-label">INVESTISSEMENT</div>
-                <h2 class="section-title">Modèle Économique</h2>
+        <!-- Section 7: Investissement -->
+        <section class="screen" data-index="7">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">7/9</span>
+                </div>
                 
-                <div class="investment-table">
-                    <div class="table-row header">
-                        <span>Poste</span>
-                        <span>Montant</span>
+                <div class="section-badge">FINANCES</div>
+                <h2 class="screen-title">Investissement</h2>
+                
+                <div class="investment-card">
+                    <div class="invest-row">
+                        <span class="invest-label">Droit d'entrée</span>
+                        <span class="invest-value">25-35K€</span>
                     </div>
-                    <div class="table-row">
-                        <span>Droit d'entrée franchise</span>
-                        <span class="amount">25 000 - 35 000 €</span>
+                    <div class="invest-row">
+                        <span class="invest-label">Travaux & aménagement</span>
+                        <span class="invest-value">80-120K€</span>
                     </div>
-                    <div class="table-row">
-                        <span>Travaux et aménagement</span>
-                        <span class="amount">80 000 - 120 000 €</span>
+                    <div class="invest-row">
+                        <span class="invest-label">Équipements cuisine</span>
+                        <span class="invest-value">60-80K€</span>
                     </div>
-                    <div class="table-row">
-                        <span>Équipements cuisine</span>
-                        <span class="amount">60 000 - 80 000 €</span>
+                    <div class="invest-row">
+                        <span class="invest-label">Stock + fonds roulement</span>
+                        <span class="invest-value">35-65K€</span>
                     </div>
-                    <div class="table-row">
-                        <span>Stock initial + fonds roulement</span>
-                        <span class="amount">35 000 - 65 000 €</span>
-                    </div>
-                    <div class="table-row total">
-                        <span>TOTAL</span>
-                        <span class="amount">200 000 - 300 000 €</span>
+                    <div class="invest-row total">
+                        <span class="invest-label">TOTAL</span>
+                        <span class="invest-value">200-300K€</span>
                     </div>
                 </div>
                 
-                <div class="redevances-grid">
-                    <div class="redevance-card">
-                        <span class="percentage">5%</span>
-                        <span class="label">Redevance exploitation</span>
-                        <span class="detail">du CA HT mensuel</span>
+                <div class="redevance-grid">
+                    <div class="redevance-box">
+                        <span class="redevance-pct">5%</span>
+                        <span class="redevance-label">Exploitation</span>
                     </div>
-                    <div class="redevance-card">
-                        <span class="percentage">2%</span>
-                        <span class="label">Communication</span>
-                        <span class="detail">du CA HT mensuel</span>
+                    <div class="redevance-box">
+                        <span class="redevance-pct">2%</span>
+                        <span class="redevance-label">Communication</span>
                     </div>
                 </div>
                 
                 <div class="objectives-grid">
-                    <div class="obj-item">
-                        <span class="obj-value">80-120k€</span>
+                    <div class="obj-box">
+                        <span class="obj-value">80-120K€</span>
                         <span class="obj-label">CA mensuel</span>
                     </div>
-                    <div class="obj-item">
+                    <div class="obj-box">
                         <span class="obj-value">15-18€</span>
                         <span class="obj-label">Ticket moyen</span>
                     </div>
-                    <div class="obj-item">
+                    <div class="obj-box">
                         <span class="obj-value">12-18%</span>
-                        <span class="obj-label">Rentabilité nette</span>
+                        <span class="obj-label">Rentabilité</span>
                     </div>
-                    <div class="obj-item">
+                    <div class="obj-box">
                         <span class="obj-value">12-18 mois</span>
-                        <span class="obj-label">Seuil rentabilité</span>
+                        <span class="obj-label">Seuil atteint</span>
                     </div>
                 </div>
+                
+                <button class="btn-primary" data-goto="8">
+                    <span>HACCP</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
-        <!-- Section 7: HACCP -->
-        <section class="slide" id="haccp" data-index="7">
-            <div class="slide-content">
-                <div class="section-label">NORMES OBLIGATOIRES</div>
-                <h2 class="section-title">HACCP & Hygiène</h2>
-                
-                <div class="haccp-intro">
-                    <p>L'hygiène est <strong>non négociable</strong>. Le système HACCP est obligatoire.</p>
+        <!-- Section 8: HACCP -->
+        <section class="screen" data-index="8">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">8/9</span>
                 </div>
                 
-                <div class="principles-list">
-                    <div class="principle-item">
+                <div class="section-badge">OBLIGATOIRE</div>
+                <h2 class="screen-title">HACCP & Hygiène</h2>
+                
+                <div class="highlight-box dark">
+                    <p>L'hygiène est <strong>non négociable</strong>. Système HACCP obligatoire.</p>
+                </div>
+                
+                <div class="principles-grid">
+                    <div class="principle-card">
                         <span class="principle-num">1</span>
-                        <div class="principle-content">
-                            <h4>Analyser les dangers</h4>
-                            <p>Biologiques, chimiques, physiques</p>
-                        </div>
+                        <h4>Analyser</h4>
+                        <p>Dangers biologiques, chimiques, physiques</p>
                     </div>
-                    <div class="principle-item">
+                    <div class="principle-card">
                         <span class="principle-num">2</span>
-                        <div class="principle-content">
-                            <h4>Déterminer les CCP</h4>
-                            <p>Réception (≤4°C), cuisson (≥68°C)</p>
-                        </div>
+                        <h4>CCP</h4>
+                        <p>Réception ≤4°C, cuisson ≥68°C</p>
                     </div>
-                    <div class="principle-item">
+                    <div class="principle-card">
                         <span class="principle-num">3</span>
-                        <div class="principle-content">
-                            <h4>Fixer les seuils critiques</h4>
-                            <p>Limites de température documentées</p>
-                        </div>
+                        <h4>Seuils</h4>
+                        <p>Limites documentées</p>
                     </div>
-                    <div class="principle-item">
+                    <div class="principle-card">
                         <span class="principle-num">4</span>
-                        <div class="principle-content">
-                            <h4>Surveiller</h4>
-                            <p>Relevés thermométriques 2x/jour</p>
-                        </div>
+                        <h4>Surveiller</h4>
+                        <p>Relevés 2x/jour</p>
                     </div>
-                    <div class="principle-item">
+                    <div class="principle-card">
                         <span class="principle-num">5</span>
-                        <div class="principle-content">
-                            <h4>Actions correctives</h4>
-                            <p>Destruction produits non-conformes</p>
-                        </div>
+                        <h4>Corriger</h4>
+                        <p>Destruction non-conformes</p>
                     </div>
-                    <div class="principle-item">
+                    <div class="principle-card">
                         <span class="principle-num">6</span>
-                        <div class="principle-content">
-                            <h4>Vérifier</h4>
-                            <p>Audits internes trimestriels</p>
-                        </div>
+                        <h4>Vérifier</h4>
+                        <p>Audits trimestriels</p>
                     </div>
-                    <div class="principle-item">
+                    <div class="principle-card full">
                         <span class="principle-num">7</span>
-                        <div class="principle-content">
-                            <h4>Documenter</h4>
-                            <p>Conservation 3-6 mois</p>
-                        </div>
+                        <h4>Documenter</h4>
+                        <p>Conservation 3-6 mois</p>
                     </div>
                 </div>
                 
                 <div class="certification-badge">
-                    <span class="badge-icon">✓</span>
-                    <span>Certification hygiène 14h incluse dans la formation</span>
+                    <span>✓</span> Certification hygiène 14h incluse
                 </div>
+                
+                <button class="btn-primary" data-goto="9">
+                    <span>Équipe</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
         </section>
 
-        <!-- Section 8: RH -->
-        <section class="slide" id="rh" data-index="8">
-            <div class="slide-content">
-                <div class="section-label">GESTION D'ÉQUIPE</div>
-                <h2 class="section-title">Ressources Humaines</h2>
-                
-                <div class="rh-intro">
-                    <p>Vos équipes sont le visage de BURGER HOUSE.</p>
+        <!-- Section 9: Équipe & Contact -->
+        <section class="screen" data-index="9">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">9/9</span>
                 </div>
                 
-                <div class="convention-card">
+                <div class="section-badge">RESSOURCES HUMAINES</div>
+                <h2 class="screen-title">Votre Équipe</h2>
+                
+                <div class="convention-box">
                     <h4>Convention Collective</h4>
-                    <p>CCN de la Restauration Rapide (IDCC 1501)</p>
-                    <div class="convention-details">
-                        <span>Horaires : 7h-23h</span>
-                        <span>Dimanche : +20%</span>
-                        <span>Turnover : 30-40%</span>
+                    <p>CCN Restauration Rapide (IDCC 1501)</p>
+                    <div class="convention-chips">
+                        <span>7h-23h</span>
+                        <span>Dim +20%</span>
+                        <span>Turnover 30-40%</span>
                     </div>
                 </div>
                 
                 <div class="team-structure">
-                    <h4>Organisation Type</h4>
-                    <div class="team-grid">
-                        <div class="team-role">
-                            <span class="role-count">1</span>
+                    <div class="team-role">
+                        <div class="role-count">1</div>
+                        <div class="role-info">
                             <span class="role-title">Responsable</span>
                             <span class="role-desc">Management, stocks, reporting</span>
                         </div>
-                        <div class="team-role">
-                            <span class="role-count">2</span>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-count">2</div>
+                        <div class="role-info">
                             <span class="role-title">Seconds</span>
                             <span class="role-desc">Supervision, ouverture/fermeture</span>
                         </div>
-                        <div class="team-role">
-                            <span class="role-count">8-12</span>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-count">8-12</div>
+                        <div class="role-info">
                             <span class="role-title">Équipiers</span>
-                            <span class="role-desc">Cuisine, service, caisse, nettoyage</span>
+                            <span class="role-desc">Cuisine, service, caisse</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Section 9: Contact -->
-        <section class="slide" id="contact" data-index="9">
-            <div class="slide-content">
-                <div class="section-label">REJOIGNEZ-NOUS</div>
-                <h2 class="section-title">Votre Prochaine<br>Étape</h2>
                 
-                <div class="conclusion-text">
-                    <p>Vous avez le projet.<br><strong>Nous avons les moyens de le réaliser ensemble.</strong></p>
-                </div>
-                
-                <div class="cta-card">
+                <div class="cta-section">
                     <div class="cta-icon">🍔</div>
-                    <h3>Contactez notre équipe développement</h3>
-                    <p>Présentez-nous votre projet, votre motivation, votre vision.</p>
-                    <button class="cta-button">Démarrer l'aventure</button>
+                    <h3>Prêt à rejoindre l'aventure ?</h3>
+                    <p>Contactez notre équipe développement</p>
+                    <button class="btn-cta" id="ctaBtn">
+                        Démarrer mon projet
+                    </button>
                 </div>
                 
-                <div class="final-quote">
-                    <span class="quote-mark">"</span>
-                    <p>Manger un burger est bien,<br>mais manger à Burger House c'est mieux.</p>
-                    <span class="quote-mark">"</span>
+                <div class="footer-quote">
+                    <p>"Manger un burger est bien,<br>mais manger à Burger House c'est mieux."</p>
                 </div>
                 
-                <div class="footer-info">
+                <div class="footer-meta">
                     <span>BURGER HOUSE</span>
                     <span>•</span>
                     <span>Décembre 2025</span>
                     <span>•</span>
-                    <span>Document confidentiel</span>
+                    <span>Confidentiel</span>
                 </div>
+                
+                <button class="btn-secondary" data-goto="0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    <span>Retour à l'accueil</span>
+                </button>
             </div>
         </section>
 
-    </main>
+    </div>
 
-    <!-- Section Navigation Dots -->
-    <div class="section-dots">
-        <button class="dot active" data-section="0" aria-label="Section 1"></button>
-        <button class="dot" data-section="1" aria-label="Section 2"></button>
-        <button class="dot" data-section="2" aria-label="Section 3"></button>
-        <button class="dot" data-section="3" aria-label="Section 4"></button>
-        <button class="dot" data-section="4" aria-label="Section 5"></button>
-        <button class="dot" data-section="5" aria-label="Section 6"></button>
-        <button class="dot" data-section="6" aria-label="Section 7"></button>
-        <button class="dot" data-section="7" aria-label="Section 8"></button>
-        <button class="dot" data-section="8" aria-label="Section 9"></button>
-        <button class="dot" data-section="9" aria-label="Section 10"></button>
+    <!-- Progress Indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        <div class="progress-dots"></div>
     </div>
 
     <script src="script.js"></script>

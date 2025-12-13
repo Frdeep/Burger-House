@@ -1,331 +1,325 @@
 /* ============================================
-   BURGER HOUSE - Franchise Manual
-   JavaScript Interactions
+   BURGER HOUSE - Franchise Manual App
+   JavaScript - Smooth Navigation & Interactions
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Elements
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const menuBtn = document.querySelector('.nav-menu-btn');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    const menuLinks = document.querySelectorAll('.menu-list a');
-    const progressFill = document.querySelector('.progress-fill');
-    const mainContainer = document.querySelector('.main-container');
     
-    // State
-    let currentSlide = 0;
+    // ============================================
+    // Elements
+    // ============================================
+    const splash = document.getElementById('splash');
+    const app = document.getElementById('app');
+    const screens = document.querySelectorAll('.screen');
+    const progressIndicator = document.getElementById('progressIndicator');
+    
+    let currentScreen = 0;
     let isAnimating = false;
     let touchStartY = 0;
-    let touchEndY = 0;
-    const totalSlides = slides.length;
+    let touchStartX = 0;
     
     // ============================================
-    // Slide Navigation
+    // Splash Screen
     // ============================================
+    setTimeout(() => {
+        splash.classList.add('hidden');
+        app.classList.add('visible');
+        initProgressDots();
+    }, 1800);
     
-    function goToSlide(index, direction = 'next') {
-        if (isAnimating || index === currentSlide || index < 0 || index >= totalSlides) return;
+    // ============================================
+    // Progress Dots
+    // ============================================
+    function initProgressDots() {
+        const dotsContainer = document.querySelector('.progress-dots');
+        if (!dotsContainer) return;
+        
+        dotsContainer.innerHTML = '';
+        screens.forEach((_, i) => {
+            const dot = document.createElement('span');
+            if (i === 0) dot.classList.add('active');
+            dotsContainer.appendChild(dot);
+        });
+    }
+    
+    function updateProgressDots() {
+        const dots = document.querySelectorAll('.progress-dots span');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentScreen);
+        });
+        
+        // Show/hide progress indicator
+        if (currentScreen > 0 && currentScreen < screens.length - 1) {
+            progressIndicator.classList.add('visible');
+        } else {
+            progressIndicator.classList.remove('visible');
+        }
+    }
+    
+    // ============================================
+    // Screen Navigation
+    // ============================================
+    function goToScreen(index) {
+        if (isAnimating || index === currentScreen || index < 0 || index >= screens.length) return;
         
         isAnimating = true;
         
-        // Remove active from current slide
-        slides[currentSlide].classList.remove('active');
+        const currentEl = screens[currentScreen];
+        const nextEl = screens[index];
         
-        // Update current slide
-        currentSlide = index;
+        // Determine direction
+        const goingForward = index > currentScreen;
         
-        // Add active to new slide
-        slides[currentSlide].classList.add('active');
+        // Animate out current screen
+        currentEl.classList.remove('active');
+        if (goingForward) {
+            currentEl.classList.add('exit-left');
+        }
         
-        // Scroll to top of new slide
-        slides[currentSlide].scrollTop = 0;
+        // Animate in next screen
+        nextEl.classList.add('active');
         
-        // Update dots
-        updateDots();
+        // Scroll to top of new screen
+        nextEl.scrollTop = 0;
         
-        // Update progress bar
-        updateProgress();
+        // Update current
+        currentScreen = index;
+        updateProgressDots();
         
-        // Allow next animation after transition
+        // Clean up after animation
         setTimeout(() => {
+            currentEl.classList.remove('exit-left');
             isAnimating = false;
         }, 400);
     }
     
-    function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
-            goToSlide(currentSlide + 1, 'next');
+    // ============================================
+    // Button Navigation
+    // ============================================
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-goto]');
+        if (btn) {
+            const targetIndex = parseInt(btn.dataset.goto, 10);
+            goToScreen(targetIndex);
+            
+            // Button press animation
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = '';
+            }, 100);
         }
-    }
-    
-    function prevSlide() {
-        if (currentSlide > 0) {
-            goToSlide(currentSlide - 1, 'prev');
-        }
-    }
-    
-    function updateDots() {
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-        });
-    }
-    
-    function updateProgress() {
-        const progress = ((currentSlide + 1) / totalSlides) * 100;
-        progressFill.style.width = `${progress}%`;
-    }
-    
-    // Dot click navigation
-    dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-            const index = parseInt(dot.dataset.section);
-            goToSlide(index);
-        });
     });
     
     // ============================================
-    // Touch/Swipe Navigation
+    // Swipe Navigation (Vertical)
     // ============================================
-    
-    mainContainer.addEventListener('touchstart', (e) => {
-        touchStartY = e.changedTouches[0].screenY;
+    app.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
     }, { passive: true });
     
-    mainContainer.addEventListener('touchmove', (e) => {
+    app.addEventListener('touchend', (e) => {
         if (isAnimating) return;
         
-        touchEndY = e.changedTouches[0].screenY;
-        const diff = touchStartY - touchEndY;
-        const activeSlide = slides[currentSlide];
+        const touchEndY = e.changedTouches[0].clientY;
+        const touchEndX = e.changedTouches[0].clientX;
+        const diffY = touchStartY - touchEndY;
+        const diffX = touchStartX - touchEndX;
         
-        // Only show feedback if at scroll boundaries
-        const isAtTop = activeSlide.scrollTop === 0;
-        const isAtBottom = activeSlide.scrollTop + activeSlide.clientHeight >= activeSlide.scrollHeight - 5;
+        // Check if it's a vertical swipe (not horizontal)
+        if (Math.abs(diffY) < 60 || Math.abs(diffX) > Math.abs(diffY)) return;
         
-        if (diff > 30 && isAtBottom) {
-            activeSlide.classList.add('swiping-up');
-        } else if (diff < -30 && isAtTop) {
-            activeSlide.classList.add('swiping-down');
+        const activeScreen = screens[currentScreen];
+        const isAtTop = activeScreen.scrollTop <= 5;
+        const isAtBottom = activeScreen.scrollTop + activeScreen.clientHeight >= activeScreen.scrollHeight - 5;
+        
+        // Swipe up at bottom = next screen
+        if (diffY > 60 && isAtBottom) {
+            // Only allow sequential navigation from welcome screen
+            if (currentScreen === 0) {
+                goToScreen(1);
+            }
         }
-    }, { passive: true });
-    
-    mainContainer.addEventListener('touchend', (e) => {
-        if (isAnimating) return;
         
-        touchEndY = e.changedTouches[0].screenY;
-        const diff = touchStartY - touchEndY;
-        const activeSlide = slides[currentSlide];
-        
-        // Remove swipe feedback
-        activeSlide.classList.remove('swiping-up', 'swiping-down');
-        
-        // Check scroll position
-        const isAtTop = activeSlide.scrollTop === 0;
-        const isAtBottom = activeSlide.scrollTop + activeSlide.clientHeight >= activeSlide.scrollHeight - 5;
-        
-        // Swipe up (go to next slide) - only if at bottom of content
-        if (diff > 80 && isAtBottom) {
-            nextSlide();
-        }
-        // Swipe down (go to previous slide) - only if at top of content
-        else if (diff < -80 && isAtTop) {
-            prevSlide();
+        // Swipe down at top = previous screen
+        if (diffY < -60 && isAtTop) {
+            if (currentScreen === 1) {
+                goToScreen(0);
+            }
         }
     }, { passive: true });
     
     // ============================================
     // Keyboard Navigation
     // ============================================
-    
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-            e.preventDefault();
-            nextSlide();
-        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-            e.preventDefault();
-            prevSlide();
+        if (e.key === 'Escape') {
+            goToScreen(1); // Go to menu
         }
     });
     
     // ============================================
-    // Mouse Wheel Navigation (Desktop)
+    // Card Carousel
     // ============================================
+    const carousels = document.querySelectorAll('.card-carousel');
     
-    let wheelTimeout;
-    let wheelDelta = 0;
-    
-    mainContainer.addEventListener('wheel', (e) => {
-        if (isAnimating) return;
+    carousels.forEach(carousel => {
+        const cards = carousel.querySelectorAll('.carousel-card');
+        const prevBtn = carousel.querySelector('.carousel-btn.prev');
+        const nextBtn = carousel.querySelector('.carousel-btn.next');
+        const dots = carousel.querySelectorAll('.carousel-dots .dot');
+        let currentCard = 0;
         
-        const activeSlide = slides[currentSlide];
-        const isAtTop = activeSlide.scrollTop === 0;
-        const isAtBottom = activeSlide.scrollTop + activeSlide.clientHeight >= activeSlide.scrollHeight - 5;
-        
-        // Accumulate wheel delta
-        wheelDelta += e.deltaY;
-        
-        clearTimeout(wheelTimeout);
-        wheelTimeout = setTimeout(() => {
-            if (Math.abs(wheelDelta) > 100) {
-                if (wheelDelta > 0 && isAtBottom) {
-                    nextSlide();
-                } else if (wheelDelta < 0 && isAtTop) {
-                    prevSlide();
+        function updateCarousel() {
+            cards.forEach((card, i) => {
+                card.classList.remove('active', 'prev');
+                if (i === currentCard) {
+                    card.classList.add('active');
+                } else if (i < currentCard) {
+                    card.classList.add('prev');
                 }
-            }
-            wheelDelta = 0;
-        }, 50);
-    }, { passive: true });
-    
-    // ============================================
-    // Mobile Menu
-    // ============================================
-    
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('active');
-        menuOverlay.classList.toggle('active');
-    });
-    
-    menuLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const index = parseInt(link.dataset.section);
+            });
             
-            // Close menu
-            menuBtn.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            
-            // Navigate to slide
-            goToSlide(index);
-        });
-    });
-    
-    // Close menu on outside click (desktop)
-    document.addEventListener('click', (e) => {
-        if (!menuBtn.contains(e.target) && !menuOverlay.contains(e.target)) {
-            menuBtn.classList.remove('active');
-            menuOverlay.classList.remove('active');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentCard);
+            });
         }
-    });
-    
-    // ============================================
-    // Card Stack (Contract Section)
-    // ============================================
-    
-    const cardStack = document.querySelector('.card-stack');
-    const stackCards = document.querySelectorAll('.stack-card');
-    const prevBtn = document.querySelector('.stack-nav-btn.prev');
-    const nextBtn = document.querySelector('.stack-nav-btn.next');
-    const stackCounter = document.querySelector('.stack-counter');
-    
-    let currentCard = 0;
-    const totalCards = stackCards.length;
-    
-    function updateCardStack() {
-        stackCards.forEach((card, index) => {
-            card.classList.remove('active', 'prev', 'next');
-            
-            if (index === currentCard) {
-                card.classList.add('active');
-            } else if (index === currentCard - 1) {
-                card.classList.add('prev');
-            } else if (index === currentCard + 1) {
-                card.classList.add('next');
-            }
-        });
         
-        if (stackCounter) {
-            stackCounter.textContent = `${currentCard + 1}/${totalCards}`;
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentCard > 0) {
+                    currentCard--;
+                    updateCarousel();
+                }
+            });
         }
-    }
-    
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            if (currentCard > 0) {
-                currentCard--;
-                updateCardStack();
-            }
-        });
         
-        nextBtn.addEventListener('click', () => {
-            if (currentCard < totalCards - 1) {
-                currentCard++;
-                updateCardStack();
-            }
-        });
-    }
-    
-    // Initialize card stack
-    updateCardStack();
-    
-    // Card stack swipe
-    if (cardStack) {
-        let cardTouchStartX = 0;
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (currentCard < cards.length - 1) {
+                    currentCard++;
+                    updateCarousel();
+                }
+            });
+        }
         
-        cardStack.addEventListener('touchstart', (e) => {
-            cardTouchStartX = e.changedTouches[0].screenX;
+        // Swipe on carousel
+        let carouselTouchStartX = 0;
+        
+        carousel.addEventListener('touchstart', (e) => {
+            carouselTouchStartX = e.touches[0].clientX;
         }, { passive: true });
         
-        cardStack.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].screenX;
-            const diff = cardTouchStartX - touchEndX;
+        carousel.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = carouselTouchStartX - touchEndX;
             
             if (Math.abs(diff) > 50) {
-                if (diff > 0 && currentCard < totalCards - 1) {
+                if (diff > 0 && currentCard < cards.length - 1) {
                     currentCard++;
                 } else if (diff < 0 && currentCard > 0) {
                     currentCard--;
                 }
-                updateCardStack();
+                updateCarousel();
             }
         }, { passive: true });
-    }
+        
+        // Initialize
+        updateCarousel();
+    });
     
     // ============================================
-    // CTA Button Animation
+    // CTA Button
     // ============================================
-    
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', () => {
-            // Add click animation
-            ctaButton.style.transform = 'translate(4px, 4px)';
-            ctaButton.style.boxShadow = 'none';
+    const ctaBtn = document.getElementById('ctaBtn');
+    if (ctaBtn) {
+        ctaBtn.addEventListener('click', () => {
+            // Visual feedback
+            ctaBtn.textContent = '✓ Demande envoyée !';
+            ctaBtn.style.background = '#4CAF50';
+            ctaBtn.style.color = '#fff';
             
             setTimeout(() => {
-                ctaButton.style.transform = '';
-                ctaButton.style.boxShadow = '';
-                
-                // Show confirmation or redirect
-                alert('Merci pour votre intérêt ! Notre équipe vous contactera bientôt.');
-            }, 200);
+                ctaBtn.textContent = 'Démarrer mon projet';
+                ctaBtn.style.background = '';
+                ctaBtn.style.color = '';
+            }, 3000);
         });
     }
     
     // ============================================
-    // Scroll Indicator Click
+    // Scroll Reveal Animations
     // ============================================
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
     
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', () => {
-            nextSlide();
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
         });
-        scrollIndicator.style.cursor = 'pointer';
+    }, observerOptions);
+    
+    // Add reveal animation to cards
+    document.querySelectorAll('.bento-card, .menu-card, .timeline-item, .principle-card, .team-role').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        revealObserver.observe(el);
+    });
+    
+    // Stagger animation delay
+    document.querySelectorAll('.screen').forEach(screen => {
+        const cards = screen.querySelectorAll('.bento-card, .menu-card, .timeline-item, .principle-card, .team-role, .excl-item');
+        cards.forEach((card, i) => {
+            card.style.transitionDelay = `${i * 0.05}s`;
+        });
+    });
+    
+    // ============================================
+    // Haptic Feedback (if supported)
+    // ============================================
+    function haptic(style = 'light') {
+        if ('vibrate' in navigator) {
+            const patterns = {
+                light: [10],
+                medium: [20],
+                heavy: [30]
+            };
+            navigator.vibrate(patterns[style] || patterns.light);
+        }
     }
+    
+    // Add haptic to buttons
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => haptic('light'));
+    });
+    
+    // ============================================
+    // Prevent Pull-to-Refresh on Mobile
+    // ============================================
+    document.body.addEventListener('touchmove', (e) => {
+        const activeScreen = screens[currentScreen];
+        if (activeScreen && activeScreen.scrollTop === 0) {
+            // Allow normal scrolling behavior
+        }
+    }, { passive: false });
     
     // ============================================
     // Initialize
     // ============================================
+    screens[0].classList.add('active');
+    updateProgressDots();
     
-    // Set initial state
-    slides[0].classList.add('active');
-    updateDots();
-    updateProgress();
-    
-    // Preload animations
-    slides.forEach(slide => {
-        slide.style.willChange = 'transform, opacity';
+    // Preload for smooth animations
+    screens.forEach(screen => {
+        screen.style.willChange = 'transform, opacity';
     });
+    
+    console.log('🍔 Burger House Franchise Manual loaded!');
 });
