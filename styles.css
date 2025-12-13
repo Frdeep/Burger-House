@@ -16,24 +16,27 @@
     --gray-300: #D4D4D4;
     --gray-800: #262626;
     
-    --shadow: 5px 5px 0 var(--black);
-    --shadow-sm: 3px 3px 0 var(--black);
-    --shadow-lg: 8px 8px 0 var(--black);
-    --shadow-soft: 0 4px 20px rgba(0,0,0,0.1);
-    --border: 3px solid var(--black);
+    /* Softer shadows for modern look */
+    --shadow: 4px 4px 0 var(--black);
+    --shadow-sm: 2px 2px 0 var(--black);
+    --shadow-lg: 6px 6px 0 var(--black);
+    --shadow-soft: 0 8px 32px rgba(0,0,0,0.12);
+    --shadow-glow: 0 0 20px rgba(255, 190, 11, 0.4);
+    --border: 2.5px solid var(--black);
     --border-sm: 2px solid var(--black);
     
-    /* More rounded corners */
-    --radius: 24px;
-    --radius-md: 18px;
-    --radius-sm: 14px;
-    --radius-xs: 10px;
-    --radius-full: 50px;
+    /* Very rounded corners - modern pill-like design */
+    --radius: 28px;
+    --radius-md: 22px;
+    --radius-sm: 16px;
+    --radius-xs: 12px;
+    --radius-full: 100px;
     
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
     --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -455,13 +458,28 @@ ul, ol {
 }
 
 @keyframes btnPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02); }
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+        box-shadow: var(--shadow);
+    }
+    25% { 
+        transform: translateY(-6px) scale(1.02); 
+        box-shadow: 6px 10px 0 var(--black);
+    }
+    50% { 
+        transform: translateY(-3px) scale(1.01); 
+        box-shadow: 5px 8px 0 var(--black);
+    }
+    75% { 
+        transform: translateY(-5px) scale(1.015); 
+        box-shadow: 5px 9px 0 var(--black);
+    }
 }
 
 @keyframes btnShine {
-    0% { left: -100%; }
-    50%, 100% { left: 100%; }
+    0% { left: -100%; opacity: 0; }
+    20% { opacity: 1; }
+    50%, 100% { left: 100%; opacity: 0; }
 }
 
 .btn-primary:active {
@@ -558,10 +576,30 @@ ul, ol {
     box-shadow: var(--shadow-sm);
     text-align: left;
     transition: all 0.25s var(--ease-bounce);
+    animation: menuCardWiggle 3s ease-in-out infinite;
+    animation-delay: calc(var(--card-index, 0) * 0.15s);
+}
+
+.menu-card:nth-child(1) { --card-index: 0; }
+.menu-card:nth-child(2) { --card-index: 1; }
+.menu-card:nth-child(3) { --card-index: 2; }
+.menu-card:nth-child(4) { --card-index: 3; }
+.menu-card:nth-child(5) { --card-index: 4; }
+.menu-card:nth-child(6) { --card-index: 5; }
+.menu-card:nth-child(7) { --card-index: 6; }
+.menu-card:nth-child(8) { --card-index: 7; }
+.menu-card:nth-child(9) { --card-index: 8; }
+
+@keyframes menuCardWiggle {
+    0%, 85%, 100% { transform: translateX(0); }
+    88% { transform: translateX(-3px); }
+    91% { transform: translateX(3px); }
+    94% { transform: translateX(-2px); }
+    97% { transform: translateX(1px); }
 }
 
 .menu-card:active {
-    transform: translate(3px, 3px) scale(0.98);
+    transform: translate(2px, 2px) scale(0.98) !important;
     box-shadow: none;
     background: var(--gray-100);
 }
@@ -1069,6 +1107,248 @@ ul, ol {
     font-size: 0.72rem;
     opacity: 0.5;
     margin-bottom: 18px;
+}
+
+/* Contract Preview Cards */
+.contract-preview {
+    background: var(--white);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 16px;
+    transition: all 0.3s var(--ease-bounce);
+    cursor: pointer;
+    animation: contractFloat 4s ease-in-out infinite;
+}
+
+@keyframes contractFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.contract-preview:active {
+    transform: translate(3px, 3px) scale(0.98);
+    box-shadow: none;
+}
+
+.contract-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contract-header h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contract-badge {
+    background: var(--primary);
+    color: var(--black);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.contract-body {
+    padding: 16px 18px;
+}
+
+.contract-preview-text {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--gray-800);
+    max-height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+
+.contract-preview-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(transparent, var(--white));
+}
+
+.contract-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: var(--primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-top: var(--border-sm);
+    animation: ctaPulse 2s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+    0%, 100% { background: var(--primary); }
+    50% { background: var(--primary-light); }
+}
+
+.contract-cta svg {
+    width: 16px;
+    height: 16px;
+    animation: arrowBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+}
+
+/* Contract Modal */
+.contract-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s var(--ease);
+}
+
+.contract-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contract-modal-content {
+    background: var(--white);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+    transform: translateY(100%);
+    transition: transform 0.4s var(--ease-bounce);
+}
+
+.contract-modal.active .contract-modal-content {
+    transform: translateY(0);
+}
+
+.contract-modal-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.contract-modal-header h3 {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-close-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--gray-800);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+}
+
+.modal-close-btn:hover {
+    background: var(--primary);
+    color: var(--black);
+    transform: rotate(90deg);
+}
+
+.contract-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(90vh - 140px);
+}
+
+.contract-section {
+    margin-bottom: 20px;
+}
+
+.contract-section h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contract-section p,
+.contract-section li {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    color: var(--gray-800);
+}
+
+.contract-section ul {
+    padding-left: 20px;
+}
+
+.contract-section li {
+    list-style: disc;
+    margin-bottom: 6px;
+}
+
+.contract-modal-footer {
+    padding: 16px 20px;
+    background: var(--gray-50);
+    border-top: var(--border-sm);
+    display: flex;
+    gap: 12px;
+}
+
+.contract-modal-footer button {
+    flex: 1;
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s var(--ease-bounce);
+}
+
+.btn-download {
+    background: var(--primary);
+    border: var(--border-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-download:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
 }
 
 /* ============================================

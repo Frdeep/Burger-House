@@ -543,6 +543,84 @@
     }
     
     // ============================================
+    // Contract Modals
+    // ============================================
+    function initContractModals() {
+        const contractPreviews = document.querySelectorAll('.contract-preview');
+        const modals = {
+            france: document.getElementById('contractModalFrance'),
+            international: document.getElementById('contractModalInternational')
+        };
+        
+        // Open modal on preview click
+        contractPreviews.forEach(preview => {
+            preview.addEventListener('click', () => {
+                const contractType = preview.dataset.contract;
+                const modal = modals[contractType];
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    hapticFeedback();
+                }
+            });
+        });
+        
+        // Close modal handlers
+        Object.values(modals).forEach(modal => {
+            if (!modal) return;
+            
+            // Close button
+            const closeBtn = modal.querySelector('.modal-close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+            
+            // Click outside to close
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Download button feedback
+            const downloadBtn = modal.querySelector('.btn-download');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', () => {
+                    downloadBtn.textContent = '✅ Téléchargement simulé !';
+                    downloadBtn.style.background = '#4CAF50';
+                    downloadBtn.style.color = 'white';
+                    hapticFeedback();
+                    
+                    setTimeout(() => {
+                        downloadBtn.textContent = '📥 Télécharger le modèle PDF';
+                        downloadBtn.style.background = '';
+                        downloadBtn.style.color = '';
+                    }, 2000);
+                });
+            }
+        });
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                Object.values(modals).forEach(modal => {
+                    if (modal && modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+    }
+    
+    // Initialize contract modals
+    initContractModals();
+    
+    // ============================================
     // Burgerbot Chatbot
     // ============================================
     function initChatbot() {
