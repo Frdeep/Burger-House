@@ -543,9 +543,25 @@
     }
     
     // ============================================
-    // PDF Generation
+    // PDF Download - Static files
     // ============================================
     function generateContractPDF(type) {
+        // Télécharger les fichiers PDF statiques
+        const fileName = type === 'france' 
+            ? 'contrat_franchise_france.pdf' 
+            : 'contrat_franchise_international.pdf';
+        
+        // Créer un lien de téléchargement
+        const link = document.createElement('a');
+        link.href = fileName;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    
+    // Fonction legacy pour jsPDF (non utilisée)
+    function generateContractPDF_legacy(type) {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         
