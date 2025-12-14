@@ -364,67 +364,152 @@
                     <span class="screen-step">4/10</span>
                 </div>
                 
-                <div class="section-badge">EXPANSION</div>
+                <div class="section-badge">EXPANSION AFRIQUE</div>
                 <h2 class="screen-title">International</h2>
                 
-                <div class="zone-card">
-                    <div class="zone-header">
-                        <span class="zone-icon">🌍</span>
-                        <h3>Zone OHADA</h3>
+                <!-- Tabs pour les zones -->
+                <div class="zone-tabs">
+                    <button class="zone-tab active" data-zone="cotedivoire">🇨🇮 Côte d'Ivoire</button>
+                    <button class="zone-tab" data-zone="ohada">🌍 Zone OHADA</button>
+                    <button class="zone-tab" data-zone="maghreb">🇲🇦 Maghreb</button>
+                </div>
+                
+                <!-- Contenu Côte d'Ivoire -->
+                <div class="zone-content active" id="zone-cotedivoire">
+                    <div class="country-hero">
+                        <div class="country-flag">🇨🇮</div>
+                        <div class="country-info">
+                            <h3>Côte d'Ivoire</h3>
+                            <span>Hub économique de l'Afrique de l'Ouest</span>
+                        </div>
                     </div>
-                    <p>17 États membres • Cadre juridique harmonisé</p>
-                    <div class="country-chips">
-                        <span>Sénégal</span><span>Côte d'Ivoire</span><span>Cameroun</span>
-                        <span>Mali</span><span>Gabon</span><span>Congo</span>
-                        <span class="more">+11 pays</span>
+                    
+                    <div class="country-stats">
+                        <div class="country-stat">
+                            <span class="stat-num">28M</span>
+                            <span class="stat-txt">Habitants</span>
+                        </div>
+                        <div class="country-stat">
+                            <span class="stat-num">+7%</span>
+                            <span class="stat-txt">Croissance PIB</span>
+                        </div>
+                        <div class="country-stat">
+                            <span class="stat-num">5M</span>
+                            <span class="stat-txt">Abidjan</span>
+                        </div>
+                    </div>
+                    
+                    <div class="country-details">
+                        <div class="detail-card">
+                            <h4>📈 Marché porteur</h4>
+                            <p>Classe moyenne en forte expansion, appétence pour les concepts de restauration rapide premium. Abidjan concentre le pouvoir d'achat.</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>⚖️ Cadre juridique</h4>
+                            <p>Droit OHADA • Immatriculation RCCM • CEPICI (guichet unique investisseurs) • Arbitrage CCJA à Abidjan.</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>💰 Conditions</h4>
+                            <p>Droit d'entrée : 50 000€ • Contrat 7 ans • Redevances 5% + 2% • Devise : FCFA (taux fixe 1€ = 655,96 FCFA).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="country-locations">
+                        <h4>📍 Zones d'implantation prioritaires</h4>
+                        <div class="location-chips">
+                            <span>Plateau (Abidjan)</span>
+                            <span>Cocody</span>
+                            <span>Marcory</span>
+                            <span>Zone 4</span>
+                            <span>Angré</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="stats-row">
-                    <div class="stat-box">
-                        <span class="stat-value">1€</span>
-                        <span class="stat-label">= 655,957 FCFA</span>
-                        <span class="stat-note">Taux de change fixe garanti</span>
+                <!-- Contenu Zone OHADA -->
+                <div class="zone-content" id="zone-ohada">
+                    <div class="ohada-intro">
+                        <p><strong>17 États membres</strong> partageant un cadre juridique harmonisé pour sécuriser vos investissements.</p>
                     </div>
-                    <div class="stat-box highlight">
-                        <span class="stat-value">7 ans</span>
-                        <span class="stat-label">Durée du contrat</span>
-                        <span class="stat-note">Renouvellement possible</span>
+                    
+                    <div class="ohada-countries">
+                        <div class="ohada-row">
+                            <span>🇨🇮 Côte d'Ivoire</span>
+                            <span>🇸🇳 Sénégal</span>
+                            <span>🇨🇲 Cameroun</span>
+                        </div>
+                        <div class="ohada-row">
+                            <span>🇲🇱 Mali</span>
+                            <span>🇬🇦 Gabon</span>
+                            <span>🇨🇬 Congo</span>
+                        </div>
+                        <div class="ohada-row">
+                            <span>🇧🇫 Burkina Faso</span>
+                            <span>🇧🇯 Bénin</span>
+                            <span>🇹🇬 Togo</span>
+                        </div>
+                        <div class="ohada-more">+ Niger, Guinée, Tchad, RCA, Guinée-Bissau, Comores, Guinée Équatoriale, RDC</div>
+                    </div>
+                    
+                    <div class="ohada-benefits">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">📜</span>
+                            <div>
+                                <strong>Droit uniforme</strong>
+                                <p>Actes uniformes applicables dans tous les États</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⚖️</span>
+                            <div>
+                                <strong>CCJA</strong>
+                                <p>Cour d'arbitrage commune à Abidjan</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💱</span>
+                            <div>
+                                <strong>Franc CFA</strong>
+                                <p>Parité fixe avec l'Euro garantie</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="zone-card zone-maghreb">
-                    <div class="zone-header">
-                        <span class="zone-icon">🇲🇦</span>
-                        <h3>Maghreb</h3>
+                <!-- Contenu Maghreb -->
+                <div class="zone-content" id="zone-maghreb">
+                    <div class="maghreb-hero">
+                        <span class="maghreb-flag">🇲🇦</span>
+                        <div>
+                            <h3>Maroc</h3>
+                            <p>Leader incontesté de la franchise en Afrique</p>
+                        </div>
                     </div>
-                    <p>Le Maroc : leader de la franchise africaine avec <strong>+650 réseaux actifs</strong></p>
-                </div>
-                
-                <div class="info-box dark">
-                    <p><strong>Arbitrage CCJA</strong> • Droit OHADA applicable • Master-franchise disponible</p>
+                    
+                    <div class="maghreb-stats">
+                        <div class="maghreb-stat">
+                            <span class="stat-big">+650</span>
+                            <span>Réseaux de franchise actifs</span>
+                        </div>
+                        <div class="maghreb-stat">
+                            <span class="stat-big">37M</span>
+                            <span>Habitants</span>
+                        </div>
+                    </div>
+                    
+                    <div class="maghreb-info">
+                        <p><strong>Avantages :</strong> Proximité Europe, francophonie, classe moyenne développée, tourisme dynamique.</p>
+                        <p><strong>Spécificités :</strong> Droit marocain, certification Halal obligatoire, devise Dirham (MAD).</p>
+                    </div>
                 </div>
                 
                 <div class="contract-preview" data-contract="international">
                     <div class="contract-header">
-                        <h4>📄 Modèle de contrat Master-Franchise</h4>
+                        <h4>📄 Contrat Master-Franchise</h4>
                         <span class="contract-badge">OHADA</span>
                     </div>
-                    <div class="contract-body">
-                        <div class="contract-preview-text">
-                            <strong>CONTRAT DE MASTER-FRANCHISE INTERNATIONALE</strong><br><br>
-                            Entre les soussignés :<br>
-                            La société BURGER HOUSE SAS, société de droit français...<br>
-                            Ci-après dénommée "Le Franchiseur"<br><br>
-                            Et :<br>
-                            [Nom de la Société], immatriculée au RCCM de [Ville]...<br>
-                            Ci-après dénommé "Le Master-Franchisé"<br><br>
-                            <strong>PRÉAMBULE</strong><br>
-                            Dans le cadre de son expansion en zone OHADA...
-                        </div>
-                    </div>
                     <div class="contract-cta">
-                        <span>Consulter le contrat complet</span>
+                        <span>Consulter le modèle</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>

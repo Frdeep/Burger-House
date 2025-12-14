@@ -617,6 +617,36 @@
         });
     }
     
+    // ============================================
+    // International Zone Tabs
+    // ============================================
+    function initZoneTabs() {
+        const tabs = document.querySelectorAll('.zone-tab');
+        const contents = document.querySelectorAll('.zone-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const zone = tab.dataset.zone;
+                
+                // Update tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update content
+                contents.forEach(c => c.classList.remove('active'));
+                const targetContent = document.getElementById(`zone-${zone}`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+                
+                hapticFeedback();
+            });
+        });
+    }
+    
+    // Initialize zone tabs
+    initZoneTabs();
+    
     // Initialize contract modals
     initContractModals();
     

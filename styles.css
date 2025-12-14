@@ -1403,7 +1403,320 @@ ul, ol {
 }
 
 /* ============================================
-   Zone Cards
+   International Section - Tabs & Content
+   ============================================ */
+.zone-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.zone-tab {
+    flex-shrink: 0;
+    padding: 10px 16px;
+    background: var(--white);
+    border: var(--border-sm);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.25s var(--ease-bounce);
+    white-space: nowrap;
+}
+
+.zone-tab.active {
+    background: var(--black);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.zone-tab:not(.active):hover {
+    background: var(--gray-100);
+}
+
+.zone-content {
+    display: none;
+    animation: fadeSlideIn 0.4s var(--ease-out);
+}
+
+.zone-content.active {
+    display: block;
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Country Hero (Côte d'Ivoire) */
+.country-hero {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+}
+
+.country-flag {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.country-info h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.country-info span {
+    font-size: 0.78rem;
+    color: var(--gray-800);
+    font-weight: 450;
+}
+
+.country-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.country-stat {
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 10px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+.country-stat .stat-num {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.country-stat .stat-txt {
+    font-size: 0.68rem;
+    opacity: 0.8;
+}
+
+.country-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.detail-card {
+    background: var(--white);
+    border: var(--border-sm);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+}
+
+.detail-card h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.detail-card p {
+    font-size: 0.78rem;
+    color: var(--black);
+    font-weight: 450;
+    line-height: 1.5;
+}
+
+.country-locations {
+    background: var(--primary-light);
+    border: var(--border-sm);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+}
+
+.country-locations h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.location-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.location-chips span {
+    background: var(--white);
+    border: 2px solid var(--black);
+    border-radius: var(--radius-full);
+    padding: 6px 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+/* OHADA Zone */
+.ohada-intro {
+    background: var(--white);
+    border: var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+}
+
+.ohada-intro p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.ohada-countries {
+    background: var(--black);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 14px;
+}
+
+.ohada-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.ohada-row span {
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.ohada-more {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    text-align: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.ohada-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--white);
+    border: var(--border-sm);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+}
+
+.benefit-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+.benefit-item strong {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 3px;
+}
+
+.benefit-item p {
+    font-size: 0.75rem;
+    color: var(--gray-800);
+    font-weight: 450;
+}
+
+/* Maghreb */
+.maghreb-hero {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+}
+
+.maghreb-flag {
+    font-size: 2.5rem;
+}
+
+.maghreb-hero h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.maghreb-hero p {
+    font-size: 0.78rem;
+    color: var(--gray-800);
+    font-weight: 450;
+}
+
+.maghreb-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.maghreb-stat {
+    background: var(--primary);
+    border: var(--border-sm);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    text-align: center;
+}
+
+.maghreb-stat .stat-big {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.maghreb-stat span:last-child {
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+.maghreb-info {
+    background: var(--white);
+    border: var(--border-sm);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    margin-bottom: 14px;
+}
+
+.maghreb-info p {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.maghreb-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   Zone Cards (legacy)
    ============================================ */
 .zone-card {
     background: var(--white);
