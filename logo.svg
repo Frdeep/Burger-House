@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="burgerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFBE0B"/>
+      <stop offset="100%" style="stop-color:#F5A623"/>
+    </linearGradient>
+    <linearGradient id="bunTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5A623"/>
+      <stop offset="100%" style="stop-color:#D4820C"/>
+    </linearGradient>
+    <linearGradient id="bunBottom" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E89D1C"/>
+      <stop offset="100%" style="stop-color:#C77B0A"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#burgerGrad)" stroke="#1A1A1A" stroke-width="5"/>
+  
+  <!-- Decorative rays -->
+  <g fill="#1A1A1A" opacity="0.1">
+    <path d="M100 5 L105 50 L95 50 Z"/>
+    <path d="M100 195 L105 150 L95 150 Z"/>
+    <path d="M5 100 L50 105 L50 95 Z"/>
+    <path d="M195 100 L150 105 L150 95 Z"/>
+  </g>
+  
+  <!-- Top Bun -->
+  <ellipse cx="100" cy="70" rx="55" ry="30" fill="url(#bunTop)" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Sesame seeds -->
+  <ellipse cx="80" cy="60" rx="4" ry="6" fill="#FFF8DC" stroke="#1A1A1A" stroke-width="1"/>
+  <ellipse cx="100" cy="55" rx="4" ry="6" fill="#FFF8DC" stroke="#1A1A1A" stroke-width="1"/>
+  <ellipse cx="120" cy="58" rx="4" ry="6" fill="#FFF8DC" stroke="#1A1A1A" stroke-width="1"/>
+  <ellipse cx="90" cy="68" rx="3" ry="5" fill="#FFF8DC" stroke="#1A1A1A" stroke-width="1"/>
+  <ellipse cx="110" cy="66" rx="3" ry="5" fill="#FFF8DC" stroke="#1A1A1A" stroke-width="1"/>
+  
+  <!-- Lettuce -->
+  <path d="M45 85 Q55 75 70 85 Q85 78 100 88 Q115 80 130 87 Q145 78 155 88" 
+        fill="none" stroke="#4CAF50" stroke-width="8" stroke-linecap="round"/>
+  <path d="M48 88 Q60 95 75 88 Q90 96 105 88 Q120 95 135 88 Q148 94 152 88" 
+        fill="none" stroke="#66BB6A" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Tomato -->
+  <rect x="50" y="95" width="100" height="12" rx="3" fill="#FF5252" stroke="#1A1A1A" stroke-width="2"/>
+  
+  <!-- Cheese -->
+  <path d="M45 110 L50 118 L70 110 L90 120 L110 110 L130 118 L150 110 L155 120 L45 120 Z" 
+        fill="#FFD54F" stroke="#1A1A1A" stroke-width="2"/>
+  
+  <!-- Patty -->
+  <ellipse cx="100" cy="130" rx="52" ry="12" fill="#5D4037" stroke="#1A1A1A" stroke-width="3"/>
+  <!-- Grill marks -->
+  <line x1="60" y1="128" x2="70" y2="132" stroke="#3E2723" stroke-width="2"/>
+  <line x1="90" y1="126" x2="100" y2="134" stroke="#3E2723" stroke-width="2"/>
+  <line x1="120" y1="127" x2="130" y2="133" stroke="#3E2723" stroke-width="2"/>
+  
+  <!-- Bottom Bun -->
+  <ellipse cx="100" cy="148" rx="55" ry="18" fill="url(#bunBottom)" stroke="#1A1A1A" stroke-width="3"/>
+  
+  <!-- Banner -->
+  <rect x="30" y="165" width="140" height="28" rx="5" fill="#1A1A1A"/>
+  <text x="100" y="185" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="14" font-weight="bold" fill="#FFBE0B">
+    Burger House
+  </text>
+</svg>

@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Burger House - Manuel de Franchise</title>
+    <meta name="description" content="Manuel officiel du franchisé Burger House. Guide complet : contrats, formation, investissement, HACCP et ressources humaines.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="logo.svg" as="image">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA & Mobile -->
+    <link rel="apple-touch-icon" href="logo.svg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#FFBE0B">
+    <meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splash">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <img src="logo-new.png" alt="Burger House">
+            </div>
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div class="app" id="app">
+        
+        <!-- Section 0: Welcome -->
+        <section class="screen active" data-index="0">
+            <div class="screen-inner welcome-screen">
+                <div class="welcome-badge">MANUEL DU FRANCHISÉ</div>
+                
+                <div class="welcome-logo">
+                    <img src="logo-new.png" alt="Burger House">
+                </div>
+                
+                <h1 class="welcome-title">Devenez<br>Franchisé</h1>
+                
+                <p class="welcome-tagline">Votre guide complet pour rejoindre l'aventure</p>
+                
+                <div class="welcome-tags">
+                    <span>Formation</span>
+                    <span>Accompagnement</span>
+                    <span>Succès</span>
+                </div>
+                
+                <button class="btn-primary btn-discover" data-goto="1" aria-label="Découvrir le manuel de franchise">
+                    <span>Commencer</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                
+                <div class="swipe-hint" aria-hidden="true">
+                    <div class="swipe-icon"></div>
+                    <span>ou glissez vers le haut</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Sommaire -->
+        <section class="screen" data-index="1">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="0" aria-label="Retour à l'accueil">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step" aria-label="Section 1 sur 10">1/10</span>
+                </div>
+                
+                <div class="section-badge">VOTRE PARCOURS</div>
+                <h2 class="screen-title">Sommaire</h2>
+                
+                <div class="menu-grid">
+                    <button class="menu-card" data-goto="2">
+                        <div class="menu-icon">🍔</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Découvrir Burger House</span>
+                            <span class="menu-desc">Notre histoire, nos valeurs et pourquoi nous rejoindre</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="3">
+                        <div class="menu-icon">📋</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Votre contrat en France</span>
+                            <span class="menu-desc">Comprendre vos droits et obligations légales</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="4">
+                        <div class="menu-icon">🌍</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Développement International</span>
+                            <span class="menu-desc">Opportunités en Afrique et au Maghreb</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="5">
+                        <div class="menu-icon">🎓</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Votre formation complète</span>
+                            <span class="menu-desc">4 semaines pour maîtriser tous les aspects du métier</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="6">
+                        <div class="menu-icon">🛡️</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Votre zone protégée</span>
+                            <span class="menu-desc">L'exclusivité territoriale qui sécurise votre investissement</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="7">
+                        <div class="menu-icon">💰</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Investissement & Rentabilité</span>
+                            <span class="menu-desc">Budget, financement et objectifs de chiffre d'affaires</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="8">
+                        <div class="menu-icon">✅</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Qualité & Hygiène HACCP</span>
+                            <span class="menu-desc">Les normes qui garantissent l'excellence de nos produits</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="9">
+                        <div class="menu-icon">🤖</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Parlez à Burgerbot</span>
+                            <span class="menu-desc">Notre assistant IA répond à toutes vos questions</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                    
+                    <button class="menu-card" data-goto="10">
+                        <div class="menu-icon">👥</div>
+                        <div class="menu-text">
+                            <span class="menu-label">Rejoindre l'équipe</span>
+                            <span class="menu-desc">Contactez-nous pour démarrer votre projet</span>
+                        </div>
+                        <div class="menu-arrow">→</div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Présentation -->
+        <section class="screen" data-index="2">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">2/10</span>
+                </div>
+                
+                <div class="section-badge">QUI SOMMES-NOUS</div>
+                <h2 class="screen-title">Pourquoi Burger House ?</h2>
+                
+                <div class="bento-grid">
+                    <div class="bento-card bento-featured">
+                        <div class="bento-number">🥩</div>
+                        <h3>Des produits d'exception</h3>
+                        <p>Nous sélectionnons exclusivement des viandes françaises Label Rouge, des pains artisanaux livrés chaque matin, et des sauces maison préparées selon nos recettes exclusives. Cette exigence qualité est au cœur de notre succès.</p>
+                    </div>
+                    
+                    <div class="bento-card">
+                        <div class="bento-number">📈</div>
+                        <h3>Un modèle qui a fait ses preuves</h3>
+                        <p>76% de nos franchisés n'avaient aucune expérience en restauration avant de nous rejoindre. Notre accompagnement leur a permis de réussir. Vous aussi, vous pouvez y arriver.</p>
+                    </div>
+                    
+                    <div class="bento-card">
+                        <div class="bento-number">🤝</div>
+                        <h3>Un partenaire à vos côtés</h3>
+                        <p>Notre équipe support est disponible 7 jours sur 7 pour répondre à vos questions et vous accompagner dans les moments clés. Vous n'êtes jamais seul face aux défis du quotidien.</p>
+                    </div>
+                    
+                    <div class="bento-card bento-dark">
+                        <div class="bento-stat">200-300K€</div>
+                        <span>Investissement total estimé</span>
+                        <p class="bento-note">Un investissement accessible avec des solutions de financement adaptées</p>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <div class="info-icon">💡</div>
+                    <div class="info-content">
+                        <p><strong>Pourquoi choisir la franchise ?</strong></p>
+                        <p>En rejoignant Burger House, vous bénéficiez d'une marque établie, d'un savoir-faire éprouvé et d'un accompagnement complet. Vous entreprenez pour vous, mais jamais seul. C'est la force du modèle de franchise : allier indépendance et sécurité.</p>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" data-goto="3">
+                    <span>Contrat France</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 3: Contrat France -->
+        <section class="screen" data-index="3">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">3/10</span>
+                </div>
+                
+                <div class="section-badge">LOI DOUBIN</div>
+                <h2 class="screen-title">Contrat France</h2>
+                
+                <div class="card-carousel" id="contractCards">
+                    <div class="carousel-track">
+                        <div class="carousel-card active">
+                            <div class="card-num">01</div>
+                            <h4>Identification</h4>
+                            <p>Franchiseur : Burger House SAS (RCS)</p>
+                            <p>Franchisé : Personne morale ou physique</p>
+                        </div>
+                        <div class="carousel-card">
+                            <div class="card-num">02</div>
+                            <h4>Durée</h4>
+                            <p>5 ans renouvelable par tacite reconduction</p>
+                            <p>Dénonciation 6 mois avant échéance</p>
+                        </div>
+                        <div class="carousel-card">
+                            <div class="card-num">03</div>
+                            <h4>Droits d'entrée</h4>
+                            <p class="big-number">25 000€ HT</p>
+                            <p>Payable à la signature</p>
+                        </div>
+                        <div class="carousel-card">
+                            <div class="card-num">04</div>
+                            <h4>Redevances</h4>
+                            <div class="card-stats">
+                                <div><span class="stat">5%</span> Exploitation</div>
+                                <div><span class="stat">2%</span> Communication</div>
+                            </div>
+                        </div>
+                        <div class="carousel-card">
+                            <div class="card-num">05</div>
+                            <h4>Obligations Franchiseur</h4>
+                            <ul>
+                                <li>Formation initiale</li>
+                                <li>Manuel opératoire</li>
+                                <li>Assistance permanente</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-card">
+                            <div class="card-num">06</div>
+                            <h4>Obligations Franchisé</h4>
+                            <ul>
+                                <li>Respect des normes</li>
+                                <li>Fournisseurs agréés</li>
+                                <li>Formations continues</li>
+                            </ul>
+                        </div>
+                        <div class="carousel-card">
+                            <div class="card-num">07</div>
+                            <h4>Non-concurrence</h4>
+                            <p>Pendant le contrat et 1 an après</p>
+                            <p>Dans un rayon défini contractuellement</p>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-nav">
+                        <button class="carousel-btn prev" aria-label="Précédent">←</button>
+                        <div class="carousel-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <button class="carousel-btn next" aria-label="Suivant">→</button>
+                    </div>
+                </div>
+                
+                <div class="contract-preview" data-contract="france">
+                    <div class="contract-header">
+                        <h4>📄 Consultez le modèle de contrat</h4>
+                        <span class="contract-badge">FRANCE</span>
+                    </div>
+                    <div class="contract-body">
+                        <div class="contract-preview-text">
+                            <strong>CONTRAT DE FRANCHISE BURGER HOUSE</strong><br><br>
+                            Entre les soussignés :<br>
+                            La société BURGER HOUSE SAS, immatriculée au RCS de Paris...<br>
+                            Ci-après dénommée "Le Franchiseur"<br><br>
+                            Et :<br>
+                            [Nom du Franchisé], [Forme juridique]...<br>
+                            Ci-après dénommé "Le Franchisé"<br><br>
+                            <strong>ARTICLE 1 - OBJET DU CONTRAT</strong><br>
+                            Le Franchiseur concède au Franchisé le droit d'exploiter...
+                        </div>
+                    </div>
+                    <div class="contract-cta">
+                        <span>Lire le contrat complet</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="legal-note">
+                    <span>📜</span> Contrat soumis au droit français • Vous disposez d'un délai de réflexion de 20 jours après réception du DIP
+                </div>
+                
+                <button class="btn-primary" data-goto="4">
+                    <span>International</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 4: International -->
+        <section class="screen" data-index="4">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">4/10</span>
+                </div>
+                
+                <div class="section-badge">EXPANSION AFRIQUE</div>
+                <h2 class="screen-title">International</h2>
+                
+                <!-- Tabs pour les zones -->
+                <div class="zone-tabs">
+                    <button class="zone-tab active" data-zone="cotedivoire">🇨🇮 Côte d'Ivoire</button>
+                    <button class="zone-tab" data-zone="ohada">🌍 Zone OHADA</button>
+                    <button class="zone-tab" data-zone="maghreb">🇲🇦 Maghreb</button>
+                </div>
+                
+                <!-- Contenu Côte d'Ivoire -->
+                <div class="zone-content active" id="zone-cotedivoire">
+                    <div class="country-hero">
+                        <div class="country-flag">🇨🇮</div>
+                        <div class="country-info">
+                            <h3>Côte d'Ivoire</h3>
+                            <span>Hub économique de l'Afrique de l'Ouest</span>
+                        </div>
+                    </div>
+                    
+                    <div class="country-stats">
+                        <div class="country-stat">
+                            <span class="stat-num">28M</span>
+                            <span class="stat-txt">Habitants</span>
+                        </div>
+                        <div class="country-stat">
+                            <span class="stat-num">+7%</span>
+                            <span class="stat-txt">Croissance PIB</span>
+                        </div>
+                        <div class="country-stat">
+                            <span class="stat-num">5M</span>
+                            <span class="stat-txt">Abidjan</span>
+                        </div>
+                    </div>
+                    
+                    <div class="country-details">
+                        <div class="detail-card">
+                            <h4>📈 Marché porteur</h4>
+                            <p>Classe moyenne en forte expansion, appétence pour les concepts de restauration rapide premium. Abidjan concentre le pouvoir d'achat.</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>⚖️ Cadre juridique</h4>
+                            <p>Droit OHADA • Immatriculation RCCM • CEPICI (guichet unique investisseurs) • Arbitrage CCJA à Abidjan.</p>
+                        </div>
+                        <div class="detail-card">
+                            <h4>💰 Conditions</h4>
+                            <p>Droit d'entrée : 50 000€ • Contrat 7 ans • Redevances 5% + 2% • Devise : FCFA (taux fixe 1€ = 655,96 FCFA).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="country-locations">
+                        <h4>📍 Zones d'implantation prioritaires</h4>
+                        <div class="location-chips">
+                            <span>Plateau (Abidjan)</span>
+                            <span>Cocody</span>
+                            <span>Marcory</span>
+                            <span>Zone 4</span>
+                            <span>Angré</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contenu Zone OHADA -->
+                <div class="zone-content" id="zone-ohada">
+                    <div class="ohada-intro">
+                        <p><strong>17 États membres</strong> partageant un cadre juridique harmonisé pour sécuriser vos investissements.</p>
+                    </div>
+                    
+                    <div class="ohada-countries">
+                        <div class="ohada-row">
+                            <span>🇨🇮 Côte d'Ivoire</span>
+                            <span>🇸🇳 Sénégal</span>
+                            <span>🇨🇲 Cameroun</span>
+                        </div>
+                        <div class="ohada-row">
+                            <span>🇲🇱 Mali</span>
+                            <span>🇬🇦 Gabon</span>
+                            <span>🇨🇬 Congo</span>
+                        </div>
+                        <div class="ohada-row">
+                            <span>🇧🇫 Burkina Faso</span>
+                            <span>🇧🇯 Bénin</span>
+                            <span>🇹🇬 Togo</span>
+                        </div>
+                        <div class="ohada-more">+ Niger, Guinée, Tchad, RCA, Guinée-Bissau, Comores, Guinée Équatoriale, RDC</div>
+                    </div>
+                    
+                    <div class="ohada-benefits">
+                        <div class="benefit-item">
+                            <span class="benefit-icon">📜</span>
+                            <div>
+                                <strong>Droit uniforme</strong>
+                                <p>Actes uniformes applicables dans tous les États</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">⚖️</span>
+                            <div>
+                                <strong>CCJA</strong>
+                                <p>Cour d'arbitrage commune à Abidjan</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <span class="benefit-icon">💱</span>
+                            <div>
+                                <strong>Franc CFA</strong>
+                                <p>Parité fixe avec l'Euro garantie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contenu Maghreb -->
+                <div class="zone-content" id="zone-maghreb">
+                    <div class="maghreb-hero">
+                        <span class="maghreb-flag">🇲🇦</span>
+                        <div>
+                            <h3>Maroc</h3>
+                            <p>Leader incontesté de la franchise en Afrique</p>
+                        </div>
+                    </div>
+                    
+                    <div class="maghreb-stats">
+                        <div class="maghreb-stat">
+                            <span class="stat-big">+650</span>
+                            <span>Réseaux de franchise actifs</span>
+                        </div>
+                        <div class="maghreb-stat">
+                            <span class="stat-big">37M</span>
+                            <span>Habitants</span>
+                        </div>
+                    </div>
+                    
+                    <div class="maghreb-info">
+                        <p><strong>Avantages :</strong> Proximité Europe, francophonie, classe moyenne développée, tourisme dynamique.</p>
+                        <p><strong>Spécificités :</strong> Droit marocain, certification Halal obligatoire, devise Dirham (MAD).</p>
+                    </div>
+                </div>
+                
+                <div class="contract-preview" data-contract="international">
+                    <div class="contract-header">
+                        <h4>📄 Contrat Franchise Internationale</h4>
+                        <span class="contract-badge">OHADA</span>
+                    </div>
+                    <div class="contract-cta">
+                        <span>Consulter le modèle</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" data-goto="5">
+                    <span>Formation</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 5: Formation -->
+        <section class="screen" data-index="5">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">5/10</span>
+                </div>
+                
+                <div class="section-badge">VOTRE RÉUSSITE</div>
+                <h2 class="screen-title">Formation</h2>
+                
+                <div class="highlight-box">
+                    <span class="highlight-icon">✓</span>
+                    <p>76% de nos franchisés ont débuté sans expérience en restauration</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">S1</div>
+                        <div class="timeline-content">
+                            <h4>Immersion & Culture</h4>
+                            <p>ADN Burger House, valeurs, visites du réseau</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">S2</div>
+                        <div class="timeline-content">
+                            <h4>Maîtrise Culinaire</h4>
+                            <p>Recettes propriétaires, techniques, sauces maison</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">S3</div>
+                        <div class="timeline-content">
+                            <h4>Excellence Service</h4>
+                            <p>Certification HACCP 14h, standards accueil</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">S4</div>
+                        <div class="timeline-content">
+                            <h4>Leadership</h4>
+                            <p>Management, marketing local, certification finale</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-row compact">
+                    <div class="stat-box small">
+                        <span class="stat-value">2</span>
+                        <span class="stat-label">Formateurs à vos côtés à l'ouverture</span>
+                    </div>
+                    <div class="stat-box small">
+                        <span class="stat-value">24/7</span>
+                        <span class="stat-label">Accès à notre plateforme e-learning</span>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" data-goto="6">
+                    <span>Exclusivité</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 6: Exclusivité -->
+        <section class="screen" data-index="6">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">6/10</span>
+                </div>
+                
+                <div class="section-badge">PROTECTION</div>
+                <h2 class="screen-title">Exclusivité</h2>
+                
+                <div class="warning-box">
+                    <div class="warning-icon">🛡️</div>
+                    <p>Votre zone de chalandise est <strong>protégée contractuellement</strong></p>
+                </div>
+                
+                <div class="exclusivity-list">
+                    <div class="excl-item">
+                        <div class="excl-num">1</div>
+                        <div class="excl-content">
+                            <h4>Exclusivité d'enseigne</h4>
+                            <p>Vous seul pouvez apposer l'enseigne sur votre territoire</p>
+                        </div>
+                    </div>
+                    <div class="excl-item">
+                        <div class="excl-num">2</div>
+                        <div class="excl-content">
+                            <h4>Exclusivité de franchise</h4>
+                            <p>Aucun autre franchisé sur votre zone de chalandise</p>
+                        </div>
+                    </div>
+                    <div class="excl-item featured">
+                        <div class="excl-badge">STANDARD BH</div>
+                        <div class="excl-num">3</div>
+                        <div class="excl-content">
+                            <h4>Exclusivité renforcée</h4>
+                            <p>Même le franchiseur s'interdit d'ouvrir sur votre zone</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert-box">
+                    <h4>⏱️ Clause de performance</h4>
+                    <p>Seuil de rentabilité à atteindre sous <strong>18 mois</strong></p>
+                </div>
+                
+                <button class="btn-primary" data-goto="7">
+                    <span>Investissement</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 7: Investissement -->
+        <section class="screen" data-index="7">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">7/10</span>
+                </div>
+                
+                <div class="section-badge">FINANCES</div>
+                <h2 class="screen-title">Investissement</h2>
+                
+                <div class="investment-card">
+                    <div class="invest-row">
+                        <span class="invest-label">Droit d'entrée (formation incluse)</span>
+                        <span class="invest-value">25-35K€</span>
+                    </div>
+                    <div class="invest-row">
+                        <span class="invest-label">Travaux & aménagement du local</span>
+                        <span class="invest-value">80-120K€</span>
+                    </div>
+                    <div class="invest-row">
+                        <span class="invest-label">Équipements cuisine professionnelle</span>
+                        <span class="invest-value">60-80K€</span>
+                    </div>
+                    <div class="invest-row">
+                        <span class="invest-label">Stock initial + fonds de roulement</span>
+                        <span class="invest-value">35-65K€</span>
+                    </div>
+                    <div class="invest-row total">
+                        <span class="invest-label">INVESTISSEMENT TOTAL</span>
+                        <span class="invest-value">200-300K€</span>
+                    </div>
+                </div>
+                
+                
+                <div class="redevance-grid">
+                    <div class="redevance-box">
+                        <span class="redevance-pct">5%</span>
+                        <span class="redevance-label">du CA pour l'exploitation</span>
+                    </div>
+                    <div class="redevance-box">
+                        <span class="redevance-pct">2%</span>
+                        <span class="redevance-label">du CA pour la communication</span>
+                    </div>
+                </div>
+                
+                
+                <div class="objectives-grid">
+                    <div class="obj-box">
+                        <span class="obj-value">80-120K€</span>
+                        <span class="obj-label">Chiffre d'affaires mensuel</span>
+                    </div>
+                    <div class="obj-box">
+                        <span class="obj-value">15-18€</span>
+                        <span class="obj-label">Ticket moyen client</span>
+                    </div>
+                    <div class="obj-box">
+                        <span class="obj-value">12-18%</span>
+                        <span class="obj-label">Rentabilité nette visée</span>
+                    </div>
+                    <div class="obj-box">
+                        <span class="obj-value">12-18 mois</span>
+                        <span class="obj-label">Pour atteindre l'équilibre</span>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" data-goto="8">
+                    <span>HACCP</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 8: HACCP -->
+        <section class="screen" data-index="8">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">8/10</span>
+                </div>
+                
+                <div class="section-badge">OBLIGATOIRE</div>
+                <h2 class="screen-title">HACCP & Hygiène</h2>
+                
+                <div class="highlight-box dark">
+                    <p>La sécurité alimentaire est <strong>non négociable</strong>. Formation HACCP incluse.</p>
+                </div>
+                
+                <div class="principles-grid">
+                    <div class="principle-card">
+                        <span class="principle-num">1</span>
+                        <h4>Analyser</h4>
+                        <p>Dangers biologiques, chimiques, physiques</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">2</span>
+                        <h4>CCP</h4>
+                        <p>Réception ≤4°C, cuisson ≥68°C</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">3</span>
+                        <h4>Seuils</h4>
+                        <p>Limites documentées</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">4</span>
+                        <h4>Surveiller</h4>
+                        <p>Relevés 2x/jour</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">5</span>
+                        <h4>Corriger</h4>
+                        <p>Destruction non-conformes</p>
+                    </div>
+                    <div class="principle-card">
+                        <span class="principle-num">6</span>
+                        <h4>Vérifier</h4>
+                        <p>Audits trimestriels</p>
+                    </div>
+                    <div class="principle-card full">
+                        <span class="principle-num">7</span>
+                        <h4>Documenter</h4>
+                        <p>Conservation 3-6 mois</p>
+                    </div>
+                </div>
+                
+                <div class="certification-badge">
+                    <span>✓</span> Certification hygiène 14h incluse
+                </div>
+                
+                <button class="btn-primary" data-goto="9">
+                    <span>Burgerbot 🤖</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 9: Burgerbot -->
+        <section class="screen" data-index="9">
+            <div class="screen-inner chatbot-screen">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">9/10</span>
+                </div>
+                
+                <div class="chatbot-header">
+                    <div class="chatbot-avatar">
+                        <span>🍔</span>
+                    </div>
+                    <div class="chatbot-info">
+                        <h2>Burgerbot</h2>
+                        <span class="chatbot-status"><span class="status-dot"></span> Expert Franchise en ligne</span>
+                    </div>
+                </div>
+                
+                <div class="chat-container" id="chatContainer">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Messages will be inserted here -->
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <div class="quick-replies" id="quickReplies">
+                        <!-- Quick reply buttons -->
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chatInput" placeholder="Posez votre question..." autocomplete="off">
+                        <button class="chat-send-btn" id="chatSendBtn" aria-label="Envoyer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" data-goto="10">
+                    <span>Équipe & Contact</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 10: Équipe & Contact -->
+        <section class="screen" data-index="10">
+            <div class="screen-inner">
+                <div class="screen-header">
+                    <button class="btn-back" data-goto="1" aria-label="Retour au sommaire">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <span class="screen-step">10/10</span>
+                </div>
+                
+                <div class="section-badge">RESSOURCES HUMAINES</div>
+                <h2 class="screen-title">Votre Équipe</h2>
+                
+                <div class="convention-box">
+                    <h4>Convention Collective</h4>
+                    <p>CCN Restauration Rapide (IDCC 1501)</p>
+                    <div class="convention-chips">
+                        <span>7h-23h</span>
+                        <span>Dim +20%</span>
+                        <span>Turnover 30-40%</span>
+                    </div>
+                </div>
+                
+                <div class="team-structure">
+                    <div class="team-role">
+                        <div class="role-count">1</div>
+                        <div class="role-info">
+                            <span class="role-title">Responsable</span>
+                            <span class="role-desc">Management, stocks, reporting</span>
+                        </div>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-count">2</div>
+                        <div class="role-info">
+                            <span class="role-title">Seconds</span>
+                            <span class="role-desc">Supervision, ouverture/fermeture</span>
+                        </div>
+                    </div>
+                    <div class="team-role">
+                        <div class="role-count">8-12</div>
+                        <div class="role-info">
+                            <span class="role-title">Équipiers</span>
+                            <span class="role-desc">Cuisine, service, caisse</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <div class="cta-icon">🍔</div>
+                    <h3>Prêt à rejoindre l'aventure ?</h3>
+                    <p>Contactez notre équipe développement</p>
+                    <button class="btn-cta" id="ctaBtn">
+                        Démarrer mon projet
+                    </button>
+                </div>
+                
+                <div class="footer-quote">
+                    <p>"Manger un burger est bien,<br>mais manger à Burger House c'est mieux."</p>
+                </div>
+                
+                <div class="footer-meta">
+                    <span>BURGER HOUSE</span>
+                    <span>•</span>
+                    <span>Décembre 2025</span>
+                    <span>•</span>
+                    <span>Confidentiel</span>
+                </div>
+                
+                <button class="btn-secondary" data-goto="0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    <span>Retour à l'accueil</span>
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Contract Modal France -->
+    <div class="contract-modal" id="contractModalFrance">
+        <div class="contract-modal-content">
+            <div class="contract-modal-header">
+                <h3>📄 Contrat de Franchise France</h3>
+                <button class="modal-close-btn" aria-label="Fermer">✕</button>
+            </div>
+            <div class="contract-modal-body">
+                <div class="contract-section">
+                    <h4>📋 Article 1 - Objet du Contrat</h4>
+                    <p>Le Franchiseur concède au Franchisé, qui l'accepte, le droit non exclusif d'exploiter un restaurant sous l'enseigne "BURGER HOUSE" conformément au concept développé par le Franchiseur.</p>
+                    <p>Ce droit comprend l'utilisation de la marque, du savoir-faire, des méthodes d'exploitation et de l'assistance technique du réseau BURGER HOUSE.</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>⏱️ Article 2 - Durée</h4>
+                    <p>Le présent contrat est conclu pour une durée de <strong>5 (cinq) ans</strong> à compter de sa signature.</p>
+                    <p>Il sera renouvelé par tacite reconduction pour des périodes successives de 5 ans, sauf dénonciation par l'une des parties moyennant un préavis de 6 mois avant l'échéance.</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>🏠 Article 3 - Territoire</h4>
+                    <p>Le Franchiseur accorde au Franchisé une <strong>exclusivité territoriale</strong> sur la zone définie en Annexe 1.</p>
+                    <p>Cette zone de chalandise est déterminée selon les critères suivants :</p>
+                    <ul>
+                        <li>Rayon de 3 à 5 km en zone urbaine</li>
+                        <li>Rayon de 10 à 15 km en zone rurale</li>
+                        <li>Population minimale de 30 000 habitants</li>
+                    </ul>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>💰 Article 4 - Conditions Financières</h4>
+                    <p><strong>4.1 Droit d'entrée :</strong> 25 000 € HT, payable à la signature.</p>
+                    <p><strong>4.2 Redevance d'exploitation :</strong> 5% du chiffre d'affaires HT mensuel.</p>
+                    <p><strong>4.3 Redevance publicitaire :</strong> 2% du chiffre d'affaires HT mensuel.</p>
+                    <p><strong>4.4 Investissement initial :</strong> L'investissement global est estimé entre 200 000 € et 300 000 € selon la surface et l'emplacement.</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>📚 Article 5 - Formation</h4>
+                    <p>Le Franchiseur s'engage à dispenser une formation initiale complète de <strong>4 semaines</strong> comprenant :</p>
+                    <ul>
+                        <li>Semaine 1 : Culture d'entreprise et valeurs BURGER HOUSE</li>
+                        <li>Semaine 2 : Techniques culinaires et recettes exclusives</li>
+                        <li>Semaine 3 : Service client et normes HACCP</li>
+                        <li>Semaine 4 : Gestion, management et outils informatiques</li>
+                    </ul>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>⚖️ Article 6 - Obligations du Franchiseur</h4>
+                    <ul>
+                        <li>Transmettre le savoir-faire et le manuel opératoire</li>
+                        <li>Fournir une assistance permanente (hotline 7j/7)</li>
+                        <li>Assurer le développement de la marque</li>
+                        <li>Gérer la communication nationale</li>
+                        <li>Négocier les accords fournisseurs</li>
+                    </ul>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>📋 Article 7 - Obligations du Franchisé</h4>
+                    <ul>
+                        <li>Respecter strictement les normes et standards BURGER HOUSE</li>
+                        <li>S'approvisionner auprès des fournisseurs agréés</li>
+                        <li>Participer aux formations continues obligatoires</li>
+                        <li>Transmettre les reporting mensuels</li>
+                        <li>Maintenir les locaux aux normes d'hygiène</li>
+                    </ul>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>🚫 Article 8 - Non-Concurrence</h4>
+                    <p>Le Franchisé s'engage à ne pas exercer d'activité concurrente :</p>
+                    <ul>
+                        <li>Pendant toute la durée du contrat</li>
+                        <li>Pendant 1 an après la fin du contrat</li>
+                        <li>Dans un rayon de 30 km autour du point de vente</li>
+                    </ul>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>⚠️ Article 9 - Résiliation</h4>
+                    <p>Le contrat peut être résilié de plein droit en cas de :</p>
+                    <ul>
+                        <li>Non-paiement des redevances pendant 2 mois consécutifs</li>
+                        <li>Non-respect grave des standards de qualité</li>
+                        <li>Atteinte à l'image de la marque</li>
+                        <li>Procédure collective du Franchisé</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contract-modal-footer">
+                <button class="btn-download" onclick="downloadPDF('france')">
+                    📥 Télécharger le modèle PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contract Modal International -->
+    <div class="contract-modal" id="contractModalInternational">
+        <div class="contract-modal-content">
+            <div class="contract-modal-header">
+                <h3>🌍 Contrat Franchise Internationale OHADA</h3>
+                <button class="modal-close-btn" aria-label="Fermer">✕</button>
+            </div>
+            <div class="contract-modal-body">
+                <div class="contract-section">
+                    <h4>📋 Préambule</h4>
+                    <p>Dans le cadre de son expansion internationale, BURGER HOUSE souhaite développer son réseau en zone OHADA (Organisation pour l'Harmonisation en Afrique du Droit des Affaires) regroupant 17 États membres.</p>
+                    <p>Le présent contrat de <strong>Franchise Internationale</strong> confère au Franchisé le droit exclusif de développer le concept Burger House sur un territoire défini.</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>⏱️ Article 1 - Durée et Territoire</h4>
+                    <p><strong>Durée :</strong> Le contrat est conclu pour une durée de <strong>7 (sept) ans</strong>, renouvelable.</p>
+                    <p><strong>Territoire :</strong> Le Franchisé bénéficie de l'exclusivité sur le pays/zone défini en Annexe (ex: Sénégal, Côte d'Ivoire, Cameroun...).</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>💰 Article 2 - Conditions Financières</h4>
+                    <p><strong>2.1 Droit d'entrée :</strong> 50 000 € à 100 000 € selon le territoire.</p>
+                    <p><strong>2.2 Redevances :</strong></p>
+                    <ul>
+                        <li>5% du CA HT pour l'exploitation</li>
+                        <li>2% du CA HT pour la communication</li>
+                    </ul>
+                    <p><strong>2.3 Conversion FCFA :</strong> Taux fixe : 1€ = 655,957 FCFA</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>🎯 Article 3 - Obligations de Développement</h4>
+                    <p>Le Franchisé s'engage à ouvrir un nombre minimum de points de vente :</p>
+                    <ul>
+                        <li>Année 1 : 2 restaurants (dont 1 pilote)</li>
+                        <li>Année 2-3 : 3 restaurants supplémentaires</li>
+                        <li>Année 4-7 : 5 restaurants supplémentaires</li>
+                    </ul>
+                    <p>Le non-respect de ce calendrier peut entraîner la perte de l'exclusivité territoriale.</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>📚 Article 4 - Formation et Assistance</h4>
+                    <p><strong>Formation initiale :</strong> 6 semaines au siège en France.</p>
+                    <p><strong>Assistance au lancement :</strong> Équipe BURGER HOUSE sur place pendant 4 semaines.</p>
+                    <p><strong>Formation continue :</strong> Sessions annuelles obligatoires.</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>🛡️ Article 5 - Droit Applicable</h4>
+                    <p>Le présent contrat est soumis au <strong>droit OHADA</strong>, notamment :</p>
+                    <ul>
+                        <li>Acte Uniforme relatif au Droit Commercial Général</li>
+                        <li>Acte Uniforme sur le Droit des Sociétés</li>
+                    </ul>
+                    <p><strong>Arbitrage :</strong> Tout litige sera soumis à l'arbitrage de la CCJA (Cour Commune de Justice et d'Arbitrage) à Abidjan.</p>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>🌍 Article 6 - Adaptation Locale</h4>
+                    <p>Le Franchisé pourra proposer des adaptations au concept pour répondre aux spécificités locales :</p>
+                    <ul>
+                        <li>Menu : jusqu'à 20% de produits locaux (soumis à validation)</li>
+                        <li>Design : adaptation aux contraintes architecturales locales</li>
+                        <li>RH : application du droit du travail local</li>
+                    </ul>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>🇲🇦 Spécificités Maghreb</h4>
+                    <p>Pour le Maroc, leader de la franchise africaine (+650 réseaux) :</p>
+                    <ul>
+                        <li>Droit applicable : Droit marocain des obligations et contrats</li>
+                        <li>Certification Halal obligatoire</li>
+                        <li>Devise : Dirham marocain (MAD)</li>
+                        <li>Tribunal compétent : Tribunaux de commerce marocains</li>
+                    </ul>
+                </div>
+                
+                <div class="contract-section">
+                    <h4>⚠️ Article 7 - Résiliation</h4>
+                    <p>Outre les cas de résiliation prévus par le droit commun :</p>
+                    <ul>
+                        <li>Non-respect du calendrier d'ouverture</li>
+                        <li>Non-paiement des redevances (3 mois)</li>
+                        <li>Atteinte grave aux standards de qualité</li>
+                        <li>Sous-franchise non autorisée</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contract-modal-footer">
+                <button class="btn-download" onclick="downloadPDF('international')">
+                    📥 Télécharger le modèle PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="progress-indicator" id="progressIndicator">
+        <div class="progress-dots"></div>
+    </div>
+
+    <script src="pdf-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
