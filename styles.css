@@ -284,15 +284,14 @@ ul, ol {
 }
 
 .screen-intro {
-    font-size: 0.9rem;
-    line-height: 1.7;
+    font-size: 0.82rem;
+    line-height: 1.6;
     color: var(--gray-800);
-    margin-bottom: 20px;
-    padding: 16px;
-    background: var(--white);
-    border: var(--border-sm);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    margin-bottom: 16px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .screen-intro strong {
@@ -300,32 +299,42 @@ ul, ol {
     font-weight: 600;
 }
 
+.screen-intro.boxed {
+    padding: 14px 16px;
+    background: var(--white);
+    border: var(--border-sm);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
 /* ============================================
    Welcome Screen
    ============================================ */
-.screen[data-index="0"] .screen-inner {
+.welcome-screen {
     justify-content: center;
     text-align: center;
-    padding-top: max(40px, var(--safe-top));
+    padding-top: max(60px, var(--safe-top));
+    gap: 0;
 }
 
 .welcome-badge {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    opacity: 0.6;
-    margin-bottom: 24px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--black);
+    opacity: 0.5;
+    margin-bottom: 32px;
 }
 
 .welcome-logo {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 24px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
     background: var(--white);
     border: var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 12px;
+    padding: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -340,58 +349,54 @@ ul, ol {
 
 @keyframes floatBounce {
     0%, 100% { transform: translateY(0) rotate(-1deg); }
-    50% { transform: translateY(-8px) rotate(1deg); }
+    50% { transform: translateY(-6px) rotate(1deg); }
 }
 
 .welcome-title {
-    font-size: clamp(2rem, 9vw, 3rem);
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
     font-weight: 700;
-    line-height: 1;
-    margin-bottom: 18px;
+    line-height: 1.05;
+    margin-bottom: 12px;
 }
 
-.welcome-quote {
-    background: var(--white);
-    border: var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 16px 20px;
-    margin: 0 auto 18px;
-    max-width: 340px;
-}
-
-.welcome-quote p {
-    font-style: italic;
-    font-size: 0.9rem;
-    line-height: 1.5;
+.welcome-tagline {
+    font-size: 0.95rem;
+    color: var(--black);
+    opacity: 0.7;
+    margin-bottom: 24px;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
 }
 
 .welcome-tags {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 }
 
 .welcome-tags span {
     background: var(--white);
     border: var(--border-sm);
     border-radius: var(--radius-full);
-    padding: 8px 18px;
-    font-size: 0.75rem;
+    padding: 10px 20px;
+    font-size: 0.8rem;
     font-weight: 600;
+    box-shadow: var(--shadow-sm);
     transition: all 0.3s var(--ease-bounce);
 }
 
 .welcome-tags span:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
 }
 
 .btn-discover {
-    margin: 0 auto 24px;
-    max-width: 320px;
+    margin: 0 auto 28px;
+    max-width: 280px;
 }
 
 .swipe-hint {
@@ -686,11 +691,11 @@ ul, ol {
 .bento-card {
     background: var(--white);
     border: var(--border-sm);
-    border-radius: var(--radius);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
-    padding: 14px;
+    padding: 12px;
     position: relative;
-    min-height: 100px;
+    min-height: 85px;
     transition: all 0.3s var(--ease-bounce);
 }
 
@@ -700,17 +705,17 @@ ul, ol {
 }
 
 .bento-card h3 {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    margin-bottom: 6px;
-    padding-right: 30px;
-    line-height: 1.2;
+    margin-bottom: 5px;
+    padding-right: 28px;
+    line-height: 1.25;
 }
 
 .bento-card p {
-    font-size: 0.75rem;
-    opacity: 0.75;
-    line-height: 1.45;
+    font-size: 0.72rem;
+    opacity: 0.7;
+    line-height: 1.5;
 }
 
 .bento-number {
