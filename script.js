@@ -788,22 +788,23 @@
                 }
             });
             
-            // Download button - Generate real PDF
+            // Download button - Direct link with feedback
             const downloadBtn = modal.querySelector('.btn-download');
             if (downloadBtn) {
-                const contractType = modal.id === 'contractModalFrance' ? 'france' : 'international';
-                downloadBtn.addEventListener('click', () => {
-                    generateContractPDF(contractType);
-                    downloadBtn.textContent = '✅ Téléchargement en cours...';
-                    downloadBtn.style.background = '#4CAF50';
-                    downloadBtn.style.color = 'white';
+                downloadBtn.addEventListener('click', (e) => {
+                    // Le téléchargement se fait via le lien <a> natif
                     hapticFeedback();
                     
+                    const originalText = downloadBtn.textContent;
+                    downloadBtn.textContent = '✅ Téléchargement lancé !';
+                    downloadBtn.style.background = '#4CAF50';
+                    downloadBtn.style.color = 'white';
+                    
                     setTimeout(() => {
-                        downloadBtn.textContent = '📥 Télécharger le modèle PDF';
+                        downloadBtn.textContent = originalText;
                         downloadBtn.style.background = '';
                         downloadBtn.style.color = '';
-                    }, 1500);
+                    }, 2000);
                 });
             }
         });

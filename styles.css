@@ -1392,9 +1392,28 @@ ul, ol {
 }
 
 .btn-download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
     background: var(--primary);
     border: var(--border-sm);
+    border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--black);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s var(--ease-bounce);
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 .btn-download:active {
