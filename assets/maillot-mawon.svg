@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Maillot Club Mawon (placeholder)">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(255,255,255,0.28)"/>
+      <stop offset="0.35" stop-color="rgba(255,255,255,0.10)"/>
+      <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="600" fill="url(#bg)"/>
+
+  <!-- Maillot -->
+  <g filter="url(#softShadow)">
+    <path
+      d="M280 120
+         C245 125 210 145 180 180
+         L105 265
+         C95 277 97 296 110 305
+         L170 345
+         C184 354 202 350 211 336
+         L250 275
+         L250 500
+         C250 525 270 545 295 545
+         L605 545
+         C630 545 650 525 650 500
+         L650 275
+         L689 336
+         C698 350 716 354 730 345
+         L790 305
+         C803 296 805 277 795 265
+         L720 180
+         C690 145 655 125 620 120
+         C595 155 560 175 520 180
+         C490 184 460 184 430 180
+         C340 170 305 145 280 120 Z"
+      fill="url(#red)"
+      stroke="rgba(255,255,255,0.18)"
+      stroke-width="2"
+    />
+
+    <!-- col -->
+    <path
+      d="M360 140
+         C390 175 420 190 450 192
+         C480 190 510 175 540 140
+         C520 190 495 220 450 228
+         C405 220 380 190 360 140 Z"
+      fill="#0f172a"
+      opacity="0.85"
+    />
+
+    <!-- bande centrale -->
+    <rect x="420" y="165" width="60" height="360" rx="22" fill="rgba(2,6,23,0.38)"/>
+
+    <!-- sponsor / équipementier -->
+    <text x="450" y="290" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-weight="800" font-size="28" fill="rgba(255,255,255,0.92)">
+      GHETBALL
+    </text>
+    <text x="450" y="322" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-weight="600" font-size="14" fill="rgba(255,255,255,0.75)">
+      fabricant du maillot officiel
+    </text>
+
+    <!-- écusson -->
+    <g transform="translate(300,220)">
+      <path d="M0 0 h70 v55 c0 50 -35 80 -35 80 s-35 -30 -35 -80 z" fill="rgba(2,6,23,0.35)" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+      <text x="35" y="34" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-weight="900" font-size="16" fill="rgba(255,255,255,0.9)">MWN</text>
+    </g>
+
+    <!-- brillance -->
+    <path
+      d="M245 160
+         C275 210 305 250 345 285
+         C385 320 430 345 500 370
+         C430 350 380 335 330 300
+         C290 270 260 230 230 170 Z"
+      fill="url(#shine)"
+      opacity="0.7"
+    />
+  </g>
+
+  <text x="450" y="575" text-anchor="middle" font-family="Outfit, Arial, sans-serif" font-weight="500" font-size="12" fill="rgba(226,232,240,0.62)">
+    Placeholder  remplace par la photo du maillot officiel
+  </text>
+</svg>
