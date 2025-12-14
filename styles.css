@@ -278,7 +278,8 @@ ul, ol {
 
 .screen-subtitle {
     font-size: 0.95rem;
-    opacity: 0.7;
+    color: var(--black);
+    font-weight: 500;
     margin-top: -12px;
     margin-bottom: 20px;
 }
@@ -362,12 +363,12 @@ ul, ol {
 .welcome-tagline {
     font-size: 0.95rem;
     color: var(--black);
-    opacity: 0.7;
+    font-weight: 500;
     margin-bottom: 24px;
-    max-width: 280px;
+    max-width: 300px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .welcome-tags {
@@ -657,8 +658,9 @@ ul, ol {
 
 .menu-desc {
     display: block;
-    font-size: 0.72rem;
-    opacity: 0.6;
+    font-size: 0.73rem;
+    color: var(--gray-800);
+    font-weight: 450;
     margin-top: 2px;
     white-space: nowrap;
     overflow: hidden;
@@ -713,8 +715,9 @@ ul, ol {
 }
 
 .bento-card p {
-    font-size: 0.72rem;
-    opacity: 0.7;
+    font-size: 0.75rem;
+    color: var(--black);
+    font-weight: 450;
     line-height: 1.5;
 }
 
@@ -1043,7 +1046,8 @@ ul, ol {
 
 .carousel-card p {
     font-size: 0.82rem;
-    opacity: 0.75;
+    color: var(--black);
+    font-weight: 450;
     margin-bottom: 5px;
     line-height: 1.45;
 }
@@ -1084,7 +1088,8 @@ ul, ol {
 
 .card-stats div {
     font-size: 0.82rem;
-    opacity: 0.8;
+    color: var(--black);
+    font-weight: 500;
 }
 
 .card-stats .stat {
@@ -1432,7 +1437,8 @@ ul, ol {
 
 .zone-card > p {
     font-size: 0.82rem;
-    opacity: 0.75;
+    color: var(--black);
+    font-weight: 450;
     margin-bottom: 12px;
     line-height: 1.45;
 }
@@ -1519,8 +1525,9 @@ ul, ol {
 
 .stat-note {
     display: block;
-    font-size: 0.62rem;
-    opacity: 0.6;
+    font-size: 0.65rem;
+    color: var(--gray-800);
+    font-weight: 450;
     margin-top: 3px;
 }
 
@@ -1589,7 +1596,8 @@ ul, ol {
 
 .timeline-content p {
     font-size: 0.78rem;
-    opacity: 0.7;
+    color: var(--black);
+    font-weight: 450;
     line-height: 1.4;
 }
 
@@ -1695,7 +1703,8 @@ ul, ol {
 
 .excl-content p {
     font-size: 0.78rem;
-    opacity: 0.75;
+    color: var(--black);
+    font-weight: 450;
     line-height: 1.4;
 }
 
@@ -1755,7 +1764,8 @@ ul, ol {
 }
 
 .invest-label {
-    opacity: 0.75;
+    color: var(--black);
+    font-weight: 450;
     flex: 1;
     padding-right: 10px;
 }
@@ -1847,8 +1857,9 @@ ul, ol {
 
 .obj-label {
     display: block;
-    font-size: 0.68rem;
-    opacity: 0.65;
+    font-size: 0.7rem;
+    color: var(--gray-800);
+    font-weight: 450;
     margin-top: 3px;
 }
 
@@ -1908,7 +1919,8 @@ ul, ol {
 
 .principle-card p {
     font-size: 0.72rem;
-    opacity: 0.75;
+    color: var(--black);
+    font-weight: 450;
     line-height: 1.4;
 }
 
@@ -1968,7 +1980,8 @@ ul, ol {
 
 .convention-box > p {
     font-size: 0.82rem;
-    opacity: 0.75;
+    color: var(--black);
+    font-weight: 450;
     margin-bottom: 12px;
 }
 
@@ -2044,7 +2057,8 @@ ul, ol {
 .role-desc {
     display: block;
     font-size: 0.72rem;
-    opacity: 0.65;
+    color: var(--gray-800);
+    font-weight: 450;
     margin-top: 3px;
 }
 
@@ -2086,7 +2100,8 @@ ul, ol {
 
 .cta-section > p {
     font-size: 0.88rem;
-    opacity: 0.65;
+    color: var(--black);
+    font-weight: 450;
     margin-bottom: 16px;
 }
 
@@ -2474,15 +2489,23 @@ ul, ol {
    ============================================ */
 @media (min-width: 600px) {
     .screen-inner {
-        max-width: 560px;
+        max-width: 600px;
         margin: 0 auto;
         padding: 32px 28px;
     }
     
     .menu-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    
+    .menu-card {
+        padding: 16px 18px;
+    }
+    
+    .menu-desc {
+        white-space: normal;
     }
     
     .carousel-track {
@@ -2497,7 +2520,7 @@ ul, ol {
     }
     
     .screen-inner {
-        max-width: 660px;
+        max-width: 720px;
         padding: 40px 36px;
     }
     
@@ -2507,12 +2530,38 @@ ul, ol {
     }
     
     .welcome-logo {
-        width: 150px;
-        height: 150px;
+        width: 130px;
+        height: 130px;
     }
     
     .welcome-title {
         font-size: 3.5rem;
+    }
+    
+    .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    
+    .menu-card {
+        padding: 18px 20px;
+        min-height: 90px;
+    }
+    
+    .menu-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+    
+    .menu-label {
+        font-size: 0.95rem;
+    }
+    
+    .menu-desc {
+        font-size: 0.78rem;
+        white-space: normal;
+        line-height: 1.4;
     }
     
     .bento-grid {
@@ -2527,6 +2576,14 @@ ul, ol {
     .bento-card {
         min-height: 110px;
         padding: 16px;
+    }
+    
+    .bento-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .bento-card p {
+        font-size: 0.8rem;
     }
     
     .carousel-track {
