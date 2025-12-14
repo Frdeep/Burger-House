@@ -543,6 +543,192 @@
     }
     
     // ============================================
+    // PDF Generation
+    // ============================================
+    function generateContractPDF(type) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Configuration
+        const margin = 20;
+        let y = margin;
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const maxWidth = pageWidth - (margin * 2);
+        
+        // Helper function to add text with word wrap
+        function addText(text, fontSize = 11, isBold = false) {
+            doc.setFontSize(fontSize);
+            doc.setFont('helvetica', isBold ? 'bold' : 'normal');
+            const lines = doc.splitTextToSize(text, maxWidth);
+            
+            lines.forEach(line => {
+                if (y > 270) {
+                    doc.addPage();
+                    y = margin;
+                }
+                doc.text(line, margin, y);
+                y += fontSize * 0.5;
+            });
+            y += 4;
+        }
+        
+        function addTitle(text) {
+            y += 5;
+            addText(text, 14, true);
+            y += 2;
+        }
+        
+        function addSection(title, content) {
+            addTitle(title);
+            addText(content);
+        }
+        
+        if (type === 'france') {
+            // Header
+            doc.setFillColor(255, 190, 11);
+            doc.rect(0, 0, pageWidth, 35, 'F');
+            doc.setTextColor(26, 26, 26);
+            doc.setFontSize(22);
+            doc.setFont('helvetica', 'bold');
+            doc.text('CONTRAT DE FRANCHISE', margin, 20);
+            doc.setFontSize(12);
+            doc.text('BURGER HOUSE - FRANCE', margin, 28);
+            
+            y = 50;
+            doc.setTextColor(0, 0, 0);
+            
+            addText('ENTRE LES SOUSSIGNÉS :', 12, true);
+            addText('La société BURGER HOUSE SAS, société par actions simplifiée au capital de 100 000 euros, immatriculée au Registre du Commerce et des Sociétés de Paris, dont le siège social est situé à Paris, représentée par son Président,');
+            addText('Ci-après dénommée "Le Franchiseur"', 11, true);
+            y += 5;
+            addText('ET');
+            y += 5;
+            addText('[Nom du Franchisé], [Forme juridique], immatriculée au RCS de [Ville], dont le siège social est situé [Adresse], représentée par [Nom du représentant] en sa qualité de [Fonction],');
+            addText('Ci-après dénommé "Le Franchisé"', 11, true);
+            
+            addSection('ARTICLE 1 - OBJET DU CONTRAT', 
+                'Le Franchiseur concède au Franchisé, qui l\'accepte, le droit non exclusif d\'exploiter un restaurant sous l\'enseigne "BURGER HOUSE" conformément au concept développé par le Franchiseur. Ce droit comprend l\'utilisation de la marque, du savoir-faire, des méthodes d\'exploitation et de l\'assistance technique du réseau BURGER HOUSE.');
+            
+            addSection('ARTICLE 2 - DURÉE', 
+                'Le présent contrat est conclu pour une durée de cinq (5) ans à compter de sa date de signature. Il sera renouvelé par tacite reconduction pour des périodes successives de cinq ans, sauf dénonciation par l\'une des parties par lettre recommandée avec accusé de réception moyennant un préavis de six (6) mois avant l\'échéance.');
+            
+            addSection('ARTICLE 3 - TERRITOIRE', 
+                'Le Franchiseur accorde au Franchisé une exclusivité territoriale sur la zone définie en Annexe 1 du présent contrat. Cette zone est déterminée selon la zone de chalandise, généralement un rayon de 3 à 5 km en zone urbaine et 10 à 15 km en zone rurale.');
+            
+            addSection('ARTICLE 4 - CONDITIONS FINANCIÈRES', 
+                'Droit d\'entrée : 25 000 € HT payable à la signature du contrat.\n' +
+                'Redevance d\'exploitation : 5% du chiffre d\'affaires HT mensuel.\n' +
+                'Redevance publicitaire : 2% du chiffre d\'affaires HT mensuel.\n' +
+                'Investissement initial estimé : 200 000 € à 300 000 € selon la surface et l\'emplacement.');
+            
+            addSection('ARTICLE 5 - OBLIGATIONS DU FRANCHISEUR', 
+                '- Transmettre le savoir-faire et le manuel opératoire complet\n' +
+                '- Dispenser une formation initiale de 4 semaines\n' +
+                '- Fournir une assistance permanente (hotline 7j/7)\n' +
+                '- Assurer le développement et la promotion de la marque\n' +
+                '- Négocier les accords fournisseurs au bénéfice du réseau');
+            
+            addSection('ARTICLE 6 - OBLIGATIONS DU FRANCHISÉ', 
+                '- Respecter strictement les normes et standards BURGER HOUSE\n' +
+                '- S\'approvisionner auprès des fournisseurs agréés\n' +
+                '- Participer aux formations continues obligatoires\n' +
+                '- Transmettre les reporting mensuels dans les délais\n' +
+                '- Maintenir les locaux conformes aux normes d\'hygiène HACCP');
+            
+            addSection('ARTICLE 7 - NON-CONCURRENCE', 
+                'Le Franchisé s\'engage à ne pas exercer d\'activité concurrente pendant toute la durée du contrat et pendant une durée d\'un (1) an après la fin du contrat, dans un rayon de trente (30) kilomètres autour du point de vente.');
+            
+            addSection('ARTICLE 8 - RÉSILIATION', 
+                'Le contrat peut être résilié de plein droit en cas de non-paiement des redevances pendant deux mois consécutifs, de non-respect grave des standards de qualité, d\'atteinte à l\'image de la marque, ou de procédure collective du Franchisé.');
+            
+            // Footer
+            y += 10;
+            addText('Fait en deux exemplaires originaux, à _____________, le _____________', 10);
+            y += 15;
+            doc.text('Le Franchiseur', margin, y);
+            doc.text('Le Franchisé', pageWidth - margin - 40, y);
+            
+            doc.save('Contrat_Franchise_BurgerHouse_France.pdf');
+            
+        } else {
+            // International contract
+            doc.setFillColor(26, 26, 26);
+            doc.rect(0, 0, pageWidth, 35, 'F');
+            doc.setTextColor(255, 190, 11);
+            doc.setFontSize(20);
+            doc.setFont('helvetica', 'bold');
+            doc.text('CONTRAT DE FRANCHISE', margin, 18);
+            doc.text('INTERNATIONALE', margin, 28);
+            doc.setFontSize(10);
+            doc.setTextColor(255, 255, 255);
+            doc.text('BURGER HOUSE - ZONE OHADA', margin, 33);
+            
+            y = 50;
+            doc.setTextColor(0, 0, 0);
+            
+            addText('ENTRE LES SOUSSIGNÉS :', 12, true);
+            addText('La société BURGER HOUSE SAS, société de droit français, immatriculée au Registre du Commerce et des Sociétés de Paris, représentée par son Président,');
+            addText('Ci-après dénommée "Le Franchiseur"', 11, true);
+            y += 5;
+            addText('ET');
+            y += 5;
+            addText('[Nom de la Société], société de droit [pays], immatriculée au RCCM de [Ville] sous le numéro [RCCM], représentée par [Nom], en sa qualité de [Fonction],');
+            addText('Ci-après dénommé "Le Franchisé"', 11, true);
+            
+            addSection('PRÉAMBULE', 
+                'Dans le cadre de son expansion internationale, BURGER HOUSE souhaite développer son réseau en zone OHADA (Organisation pour l\'Harmonisation en Afrique du Droit des Affaires). Le présent contrat de Franchise Internationale confère au Franchisé le droit exclusif de développer le concept sur un territoire défini.');
+            
+            addSection('ARTICLE 1 - DURÉE ET TERRITOIRE', 
+                'Durée : Le contrat est conclu pour une durée de sept (7) ans, renouvelable par périodes de sept ans.\n' +
+                'Territoire : Le Franchisé bénéficie de l\'exclusivité sur le territoire défini en Annexe (exemple : Côte d\'Ivoire, Sénégal, Cameroun, etc.).');
+            
+            addSection('ARTICLE 2 - CONDITIONS FINANCIÈRES', 
+                'Droit d\'entrée : 50 000 € à 100 000 € selon le territoire.\n' +
+                'Redevance d\'exploitation : 5% du chiffre d\'affaires HT mensuel.\n' +
+                'Redevance communication : 2% du chiffre d\'affaires HT mensuel.\n' +
+                'Conversion FCFA : Taux fixe garanti de 1€ = 655,957 FCFA.');
+            
+            addSection('ARTICLE 3 - OBLIGATIONS DE DÉVELOPPEMENT', 
+                'Le Franchisé s\'engage à ouvrir un nombre minimum de points de vente :\n' +
+                '- Année 1 : 2 restaurants (dont 1 pilote)\n' +
+                '- Années 2-3 : 3 restaurants supplémentaires\n' +
+                '- Années 4-7 : 5 restaurants supplémentaires\n' +
+                'Le non-respect de ce calendrier peut entraîner la perte de l\'exclusivité territoriale.');
+            
+            addSection('ARTICLE 4 - FORMATION ET ASSISTANCE', 
+                'Formation initiale : 6 semaines au siège en France.\n' +
+                'Assistance au lancement : Équipe BURGER HOUSE sur place pendant 4 semaines.\n' +
+                'Formation continue : Sessions annuelles obligatoires.');
+            
+            addSection('ARTICLE 5 - DROIT APPLICABLE', 
+                'Le présent contrat est soumis au droit OHADA, notamment l\'Acte Uniforme relatif au Droit Commercial Général et l\'Acte Uniforme sur le Droit des Sociétés.\n' +
+                'Arbitrage : Tout litige sera soumis à l\'arbitrage de la CCJA (Cour Commune de Justice et d\'Arbitrage) siégeant à Abidjan, Côte d\'Ivoire.');
+            
+            addSection('ARTICLE 6 - ADAPTATION LOCALE', 
+                'Le Franchisé pourra proposer des adaptations au concept pour répondre aux spécificités locales :\n' +
+                '- Menu : jusqu\'à 20% de produits locaux (soumis à validation du Franchiseur)\n' +
+                '- Design : adaptation aux contraintes architecturales locales\n' +
+                '- Ressources humaines : application du droit du travail local');
+            
+            addSection('ARTICLE 7 - RÉSILIATION', 
+                'Outre les cas de résiliation prévus par le droit commun, le contrat peut être résilié en cas de :\n' +
+                '- Non-respect du calendrier d\'ouverture\n' +
+                '- Non-paiement des redevances pendant 3 mois consécutifs\n' +
+                '- Atteinte grave aux standards de qualité\n' +
+                '- Sous-franchise non autorisée');
+            
+            // Footer
+            y += 10;
+            addText('Fait en deux exemplaires originaux, à _____________, le _____________', 10);
+            y += 15;
+            doc.text('Le Franchiseur', margin, y);
+            doc.text('Le Franchisé', pageWidth - margin - 40, y);
+            
+            doc.save('Contrat_Franchise_BurgerHouse_International.pdf');
+        }
+    }
+    
+    // ============================================
     // Contract Modals
     // ============================================
     function initContractModals() {
@@ -586,11 +772,13 @@
                 }
             });
             
-            // Download button feedback
+            // Download button - Generate real PDF
             const downloadBtn = modal.querySelector('.btn-download');
             if (downloadBtn) {
+                const contractType = modal.id === 'contractModalFrance' ? 'france' : 'international';
                 downloadBtn.addEventListener('click', () => {
-                    downloadBtn.textContent = '✅ Téléchargement simulé !';
+                    generateContractPDF(contractType);
+                    downloadBtn.textContent = '✅ Téléchargement en cours...';
                     downloadBtn.style.background = '#4CAF50';
                     downloadBtn.style.color = 'white';
                     hapticFeedback();
@@ -599,7 +787,7 @@
                         downloadBtn.textContent = '📥 Télécharger le modèle PDF';
                         downloadBtn.style.background = '';
                         downloadBtn.style.color = '';
-                    }, 2000);
+                    }, 1500);
                 });
             }
         });
