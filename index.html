@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Club Mawon — Maillots officiels</title>
+    <meta
+      name="description"
+      content="Plateforme de présentation et boutique (démo) des maillots officiels du Club Mawon, fabriqués par Ghetball."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#cartes">Aller au contenu</a>
+
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="mark" aria-hidden="true">
+          <span class="mark__dot"></span>
+          <span class="mark__text">MAWON</span>
+        </div>
+        <div class="topbar__titles">
+          <div class="topbar__title">Club Mawon</div>
+          <div class="topbar__subtitle">Maillots officiels • Équipementier Ghetball</div>
+        </div>
+      </div>
+      <div class="topbar__right">
+        <button class="pill" type="button" data-action="open-cart" aria-haspopup="dialog">
+          Panier <span class="pill__count" data-cart-count>0</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <div class="hero__badge">
+          <span class="hero__pulse" aria-hidden="true"></span>
+          Plateforme e-commerce + stratégie social media
+        </div>
+        <h1 class="hero__title">
+          Une web app premium pour présenter <span class="hero__accent">le Club Mawon</span> et vendre le
+          <span class="hero__accent2">maillot officiel</span>.
+        </h1>
+        <p class="hero__lead">
+          Scroll horizontal (mobile-first), cartes 3D flip, effet glassmorphism et navigation rapide vers les 6 piliers du
+          projet.
+        </p>
+        <div class="hero__actions">
+          <a class="cta" href="#cartes">Découvrir les 6 cartes</a>
+          <button class="cta cta--ghost" type="button" data-action="open-card" data-card-id="1">
+            Voir le maillot
+          </button>
+        </div>
+        <p class="hero__hint">
+          Astuce : sur mobile, swipe horizontal. Sur desktop, molette + Shift.
+        </p>
+      </section>
+
+      <section class="cards" id="cartes" aria-label="Cartes de présentation du projet">
+        <div class="cards__track" role="list" data-cards-track></div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer__grid">
+          <div>
+            <div class="footer__brand">Club Mawon</div>
+            <div class="footer__meta">Maillots officiels fabriqués par Ghetball</div>
+          </div>
+          <div class="footer__meta footer__meta--right">
+            Démo UI • Paiement/stock/commandes : intégration backend à prévoir
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Modal détails carte -->
+    <div class="modal" hidden data-modal>
+      <div class="modal__backdrop" data-action="close-modal" aria-hidden="true"></div>
+      <div
+        class="modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-body"
+        tabindex="-1"
+      >
+        <div class="modal__head">
+          <div>
+            <div class="modal__kicker" data-modal-kicker>Carte</div>
+            <div class="modal__title" id="modal-title" data-modal-title>Titre</div>
+          </div>
+          <button class="icon-btn" type="button" data-action="close-modal" aria-label="Fermer">
+            <span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <div class="modal__body" id="modal-body" data-modal-body></div>
+        <div class="modal__foot">
+          <button class="pill pill--ghost" type="button" data-action="close-modal">Fermer</button>
+          <button class="pill" type="button" data-action="primary-modal-action">Action</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal panier -->
+    <div class="modal" hidden data-cart-modal>
+      <div class="modal__backdrop" data-action="close-cart" aria-hidden="true"></div>
+      <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1">
+        <div class="modal__head">
+          <div>
+            <div class="modal__kicker">E-commerce (démo)</div>
+            <div class="modal__title" id="cart-title">Panier</div>
+          </div>
+          <button class="icon-btn" type="button" data-action="close-cart" aria-label="Fermer">
+            <span aria-hidden="true">✕</span>
+          </button>
+        </div>
+        <div class="modal__body" data-cart-body></div>
+        <div class="modal__foot">
+          <button class="pill pill--ghost" type="button" data-action="clear-cart">Vider</button>
+          <button class="pill" type="button" data-action="checkout">Simuler paiement</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
