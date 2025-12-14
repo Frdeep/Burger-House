@@ -1030,9 +1030,9 @@
                 </div>
             </div>
             <div class="contract-modal-footer">
-                <a href="contrat_franchise_france.pdf" download="Contrat_Franchise_BurgerHouse_France.pdf" class="btn-download">
+                <button class="btn-download" onclick="downloadPDF('france')">
                     📥 Télécharger le modèle PDF
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -1129,9 +1129,9 @@
                 </div>
             </div>
             <div class="contract-modal-footer">
-                <a href="contrat_franchise_international.pdf" download="Contrat_Franchise_BurgerHouse_International.pdf" class="btn-download">
+                <button class="btn-download" onclick="downloadPDF('international')">
                     📥 Télécharger le modèle PDF
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -1141,6 +1141,7 @@
         <div class="progress-dots"></div>
     </div>
 
+    <script src="pdf-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
